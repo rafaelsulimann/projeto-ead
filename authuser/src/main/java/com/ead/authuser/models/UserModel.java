@@ -1,7 +1,7 @@
 package com.ead.authuser.models;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -55,17 +55,17 @@ public class UserModel implements Serializable {
 
     @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    private LocalDateTime creationDate;
+    private Instant creationDate;
     @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    private LocalDateTime lastUpdateTime;
+    private Instant lastUpdateTime;
 
     public UserModel(){
     }
 
     public UserModel(UUID id, String name, String email, String password, String fullName, String phoneNumber,
-            String cpf, String imgUrl, UserStatus userStatus, UserType userType, LocalDateTime creationDate,
-            LocalDateTime lastUpdateTime) {
+            String cpf, String imgUrl, UserStatus userStatus, UserType userType, Instant creationDate,
+            Instant lastUpdateTime) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -160,19 +160,19 @@ public class UserModel implements Serializable {
         this.userType = userType;
     }
 
-    public LocalDateTime getCreationDate() {
+    public Instant getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
+    public void setCreationDate(Instant creationDate) {
         this.creationDate = creationDate;
     }
 
-    public LocalDateTime getLastUpdateTime() {
+    public Instant getLastUpdateTime() {
         return lastUpdateTime;
     }
 
-    public void setLastUpdateTime(LocalDateTime lastUpdateTime) {
+    public void setLastUpdateTime(Instant lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
     }
 
