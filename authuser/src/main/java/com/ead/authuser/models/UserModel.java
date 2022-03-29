@@ -30,18 +30,18 @@ public class UserModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = false, length = 50)
     private String name;
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = false, length = 50)
     private String email;
     @Column(nullable = false, length = 255)
     @JsonIgnore
     private String password;
-    @Column(nullable = false, unique =true, length = 150)
+    @Column(nullable = false, length = 150)
     private String fullName;
     @Column(length = 20)
     private String phoneNumber;
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = false, length = 20)
     private String cpf;
     @Column
     private String imgUrl;
