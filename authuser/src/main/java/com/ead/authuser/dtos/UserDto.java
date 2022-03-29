@@ -2,6 +2,10 @@ package com.ead.authuser.dtos;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -17,15 +21,23 @@ public class UserDto implements Serializable{
         public static interface ImagePut{}
     }
 
+    @NotBlank(groups = UserView.RegistrantionPost.class)
+    @Size(min = 4, max = 50)
     @JsonView(UserView.RegistrantionPost.class)
     private String name;
 
+    @NotBlank(groups = UserView.RegistrantionPost.class)
+    @Email
     @JsonView(UserView.RegistrantionPost.class)
     private String email;
 
+    @NotBlank(groups = {UserView.RegistrantionPost.class, UserView.PasswordPut.class})
+    @Size(min = 6, max = 20)
     @JsonView({UserView.RegistrantionPost.class, UserView.PasswordPut.class})
     private String password;
 
+    @NotBlank(groups = UserView.PasswordPut.class)
+    @Size(min = 6, max = 20)
     @JsonView(UserView.PasswordPut.class)
     private String oldPassword;
 
@@ -35,9 +47,12 @@ public class UserDto implements Serializable{
     @JsonView({UserView.RegistrantionPost.class, UserView.UserPut.class})
     private String phoneNumber;
 
+    @NotBlank(groups = UserView.RegistrantionPost.class)
+    @Size(min = 11, max = 11)
     @JsonView(UserView.RegistrantionPost.class)
     private String cpf;
 
+    @NotBlank(groups = UserView.ImagePut.class)
     @JsonView(UserView.ImagePut.class)
     private String imgUrl;
 

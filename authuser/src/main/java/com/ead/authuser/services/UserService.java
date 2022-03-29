@@ -85,7 +85,7 @@ public class UserService {
     }
 
     public boolean existsByCpf(String cpf){
-        return repository.existsByEmail(cpf);
+        return repository.existsByCpf(cpf);
     }
     
 }
