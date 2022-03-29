@@ -1,7 +1,7 @@
 package com.ead.authuser.models;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -54,18 +54,18 @@ public class UserModel implements Serializable {
     private UserType userType;
 
     @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    private Instant creationDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime creationDate;
     @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    private Instant lastUpdateTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime lastUpdateTime;
 
     public UserModel(){
     }
 
     public UserModel(UUID id, String name, String email, String password, String fullName, String phoneNumber,
-            String cpf, String imgUrl, UserStatus userStatus, UserType userType, Instant creationDate,
-            Instant lastUpdateTime) {
+            String cpf, String imgUrl, UserStatus userStatus, UserType userType, LocalDateTime creationDate,
+            LocalDateTime lastUpdateTime) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -160,19 +160,19 @@ public class UserModel implements Serializable {
         this.userType = userType;
     }
 
-    public Instant getCreationDate() {
+    public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Instant creationDate) {
+    public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
 
-    public Instant getLastUpdateTime() {
+    public LocalDateTime getLastUpdateTime() {
         return lastUpdateTime;
     }
 
-    public void setLastUpdateTime(Instant lastUpdateTime) {
+    public void setLastUpdateTime(LocalDateTime lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
     }
 
