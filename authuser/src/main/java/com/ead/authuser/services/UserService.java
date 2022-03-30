@@ -76,8 +76,8 @@ public class UserService {
         return obj;
     }
 
-    public boolean existsByName(String name){
-        return repository.existsByName(name);
+    public boolean existsByUserName(String userName){
+        return repository.existsByUserName(userName);
     }
 
     public boolean existsByEmail(String email){

@@ -31,8 +31,8 @@ public class AuthenticationController {
     @PostMapping(value = "/signup")
     public ResponseEntity<UserModel> registerUser(
             @RequestBody @Validated(UserDto.UserView.RegistrantionPost.class) @JsonView(UserDto.UserView.RegistrantionPost.class) UserDto userDto) {
-        if (service.existsByName(userDto.getName())) {
-            throw new ExistsByUserNameException(userDto.getName());
+        if (service.existsByUserName(userDto.getUserName())) {
+            throw new ExistsByUserNameException(userDto.getUserName());
         }
         if (service.existsByEmail(userDto.getEmail())) {
             throw new ExistsByEmailException(userDto.getEmail());

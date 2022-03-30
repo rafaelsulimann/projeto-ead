@@ -6,6 +6,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.ead.authuser.validation.UsernameConstraint;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -21,34 +22,36 @@ public class UserDto implements Serializable{
         public static interface ImagePut{}
     }
 
-    @NotBlank(groups = UserView.RegistrantionPost.class)
-    @Size(min = 4, max = 50)
+    //@NotBlank(groups = UserView.RegistrantionPost.class) - SUBTITUÍDO PELO USERNAME CONSTRAINT
+    @Size(min = 4, max = 50, groups = UserView.RegistrantionPost.class)
+    @UsernameConstraint(groups = UserView.RegistrantionPost.class)
     @JsonView(UserView.RegistrantionPost.class)
-    private String name;
+    private String userName;
 
     @NotBlank(groups = UserView.RegistrantionPost.class)
-    @Email
+    @Email(groups = UserView.RegistrantionPost.class)
     @JsonView(UserView.RegistrantionPost.class)
     private String email;
 
     @NotBlank(groups = {UserView.RegistrantionPost.class, UserView.PasswordPut.class})
-    @Size(min = 6, max = 20)
+    @Size(min = 6, max = 20, groups = {UserView.RegistrantionPost.class, UserView.PasswordPut.class})
     @JsonView({UserView.RegistrantionPost.class, UserView.PasswordPut.class})
     private String password;
 
     @NotBlank(groups = UserView.PasswordPut.class)
-    @Size(min = 6, max = 20)
+    @Size(min = 6, max = 20, groups = UserView.PasswordPut.class)
     @JsonView(UserView.PasswordPut.class)
     private String oldPassword;
 
     @JsonView({UserView.RegistrantionPost.class, UserView.UserPut.class})
     private String fullName;
 
+    @Size(min = 9, max = 11, groups = UserView.UserPut.class)
     @JsonView({UserView.RegistrantionPost.class, UserView.UserPut.class})
     private String phoneNumber;
 
     @NotBlank(groups = UserView.RegistrantionPost.class)
-    @Size(min = 11, max = 11)
+    @Size(min = 11, max = 11, groups = UserView.RegistrantionPost.class)
     @JsonView(UserView.RegistrantionPost.class)
     private String cpf;
 
@@ -59,9 +62,9 @@ public class UserDto implements Serializable{
     public UserDto(){
     }
 
-    public UserDto(String name, String email, String password, String oldPassword, String fullName, String phoneNumber, String cpf,
+    public UserDto(String userName, String email, String password, String oldPassword, String fullName, String phoneNumber, String cpf,
             String imgUrl) {
-        this.name = name;
+        this.userName = userName;
         this.email = email;
         this.password = password;
         this.oldPassword = oldPassword;
@@ -71,12 +74,12 @@ public class UserDto implements Serializable{
         this.imgUrl = imgUrl;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmail() {

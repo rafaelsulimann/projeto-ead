@@ -31,7 +31,7 @@ public class UserModel implements Serializable {
     private UUID id;
 
     @Column(nullable = false, length = 50)
-    private String name;
+    private String userName;
     @Column(nullable = false, length = 50)
     private String email;
     @Column(nullable = false, length = 255)
@@ -63,11 +63,11 @@ public class UserModel implements Serializable {
     public UserModel(){
     }
 
-    public UserModel(UUID id, String name, String email, String password, String fullName, String phoneNumber,
+    public UserModel(UUID id, String userName, String email, String password, String fullName, String phoneNumber,
             String cpf, String imgUrl, UserStatus userStatus, UserType userType, LocalDateTime creationDate,
             LocalDateTime lastUpdateTime) {
         this.id = id;
-        this.name = name;
+        this.userName = userName;
         this.email = email;
         this.password = password;
         this.fullName = fullName;
@@ -88,12 +88,12 @@ public class UserModel implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmail() {
