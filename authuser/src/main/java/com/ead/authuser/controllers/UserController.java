@@ -25,6 +25,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(value = "/users")
@@ -36,6 +39,11 @@ public class UserController {
     @GetMapping
     public ResponseEntity<Page<UserModel>> findAll(SpecificationTemplate.UserSpec spec, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
         Page<UserModel> userModelPage = service.findAll(spec, pageable);
+        if(!userModelPage.isEmpty()){
+            for(UserModel user : userModelPage.toList()){
+                user.add(linkTo(methodOn(UserController.class).findById(user.getId())).withSelfRel());
+            }
+        }
         return ResponseEntity.ok().body(userModelPage);
     }
 

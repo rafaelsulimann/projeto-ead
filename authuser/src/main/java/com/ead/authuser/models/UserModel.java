@@ -19,10 +19,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import org.springframework.hateoas.RepresentationModel;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table (name = "tb_users")
-public class UserModel implements Serializable {
+public class UserModel extends RepresentationModel<UserModel> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
