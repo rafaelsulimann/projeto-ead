@@ -1,6 +1,5 @@
 package com.ead.authuser.controllers;
 
-import java.util.List;
 import java.util.UUID;
 
 import com.ead.authuser.dtos.UserDto;
@@ -10,6 +9,10 @@ import com.ead.authuser.services.exceptions.PasswordException;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,9 +33,9 @@ public class UserController {
     private UserService service;
 
     @GetMapping
-    public ResponseEntity<List<UserModel>> findAll() {
-        List<UserModel> list = service.findAll();
-        return ResponseEntity.ok().body(list);
+    public ResponseEntity<Page<UserModel>> findAll(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+        Page<UserModel> userModelPage = service.findAll(pageable);
+        return ResponseEntity.ok().body(userModelPage);
     }
 
     @GetMapping(value = "/{id}")

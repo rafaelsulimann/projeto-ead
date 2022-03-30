@@ -22,7 +22,6 @@ public class UserDto implements Serializable{
         public static interface ImagePut{}
     }
 
-    //@NotBlank(groups = UserView.RegistrantionPost.class) - SUBTITUÍDO PELO USERNAME CONSTRAINT
     @Size(min = 4, max = 50, groups = UserView.RegistrantionPost.class)
     @UsernameConstraint(groups = UserView.RegistrantionPost.class)
     @JsonView(UserView.RegistrantionPost.class)
