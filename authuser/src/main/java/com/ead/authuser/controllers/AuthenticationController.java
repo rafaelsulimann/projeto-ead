@@ -43,7 +43,7 @@ public class AuthenticationController {
         UserModel obj = service.fromDTO(userDto);
         obj = service.insert(obj);
         obj = service.save(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{userId}").buildAndExpand(obj.getUserId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }
 }

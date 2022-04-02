@@ -2,7 +2,6 @@ package com.ead.authuser.services;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -22,21 +21,21 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-
+     
     @Autowired
     private UserRepository repository;
 
-    public List<UserModel> findAll(){
-        return repository.findAll();
+    public Page<UserModel> findAll(Specification<UserModel> spec, Pageable pageable) {
+        return repository.findAll(spec, pageable);
     }
 
-    public UserModel findById(UUID id){        
-        Optional<UserModel> obj = repository.findById(id);
-        return obj.orElseThrow(() -> new NotFoundException(id));  
+    public UserModel findById(UUID userId){        
+        Optional<UserModel> obj = repository.findById(userId);
+        return obj.orElseThrow(() -> new NotFoundException(userId));  
     }
 
-    public void delete(UUID id){
-        repository.deleteById(id);
+    public void delete(UUID userId){
+        repository.deleteById(userId);
     }
 
     public UserModel save(UserModel userModel){
@@ -51,23 +50,23 @@ public class UserService {
         return obj;
     }
 
-    public UserModel updateUser(UUID id, UserModel obj){
-        UserModel entity = findById(id);
+    public UserModel updateUser(UUID userId, UserModel obj){
+        UserModel entity = findById(userId);
         entity.setFullName(obj.getFullName());
         entity.setPhoneNumber(obj.getPhoneNumber());
         entity.setLastUpdateTime(LocalDateTime.now(ZoneId.of("UTC")));
         return entity;
     }
 
-    public UserModel updatePassword(UUID id, UserModel obj){
-        UserModel entity = findById(id);
+    public UserModel updatePassword(UUID userId, UserModel obj){
+        UserModel entity = findById(userId);
         entity.setPassword(obj.getPassword());
         entity.setLastUpdateTime(LocalDateTime.now(ZoneId.of("UTC")));
         return entity;
     }
 
-    public UserModel updateImage(UUID id, UserModel obj){
-        UserModel entity = findById(id);
+    public UserModel updateImage(UUID userId, UserModel obj){
+        UserModel entity = findById(userId);
         entity.setImgUrl(obj.getImgUrl());
         entity.setLastUpdateTime(LocalDateTime.now(ZoneId.of("UTC")));
         return entity;
@@ -89,10 +88,6 @@ public class UserService {
 
     public boolean existsByCpf(String cpf){
         return repository.existsByCpf(cpf);
-    }
-
-    public Page<UserModel> findAll(Specification<UserModel> spec, Pageable pageable) {
-        return repository.findAll(spec, pageable);
     }
     
 }

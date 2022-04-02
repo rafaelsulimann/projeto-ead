@@ -7,10 +7,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import com.ead.authuser.validation.UsernameConstraint;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDto implements Serializable{
 
     private static final long serialVersionUID = 1L;
@@ -23,7 +21,7 @@ public class UserDto implements Serializable{
     }
 
     @Size(min = 4, max = 50, groups = UserView.RegistrantionPost.class)
-    @UsernameConstraint(groups = UserView.RegistrantionPost.class)
+    @UsernameConstraint(groups = UserView.RegistrantionPost.class)   
     @JsonView(UserView.RegistrantionPost.class)
     private String userName;
 

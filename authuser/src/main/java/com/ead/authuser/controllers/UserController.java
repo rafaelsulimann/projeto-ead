@@ -37,45 +37,46 @@ public class UserController {
     private UserService service;
 
     @GetMapping
-    public ResponseEntity<Page<UserModel>> findAll(SpecificationTemplate.UserSpec spec, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+    public ResponseEntity<Page<UserModel>> findAll(SpecificationTemplate.UserSpec spec,
+            @PageableDefault(page = 0, size = 10, sort = "userId", direction = Sort.Direction.ASC) Pageable pageable) {
         Page<UserModel> userModelPage = service.findAll(spec, pageable);
-        if(!userModelPage.isEmpty()){
-            for(UserModel user : userModelPage.toList()){
-                user.add(linkTo(methodOn(UserController.class).findById(user.getId())).withSelfRel());
+        if (!userModelPage.isEmpty()) {
+            for (UserModel user : userModelPage.toList()) {
+                user.add(linkTo(methodOn(UserController.class).findById(user.getUserId())).withSelfRel());
             }
         }
         return ResponseEntity.ok().body(userModelPage);
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<UserModel> findById(@PathVariable UUID id) {
-        UserModel obj = service.findById(id);
+    @GetMapping(value = "/{userId}")
+    public ResponseEntity<UserModel> findById(@PathVariable UUID userId) {
+        UserModel obj = service.findById(userId);
         return ResponseEntity.ok().body(obj);
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Object> delete(@PathVariable UUID id) {
-        findById(id);
-        service.delete(id);
+    @DeleteMapping(value = "/{userId}")
+    public ResponseEntity<Object> delete(@PathVariable UUID userId) {
+        findById(userId);
+        service.delete(userId);
         return ResponseEntity.ok().body("Usuário deletado com sucesso");
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<UserModel> updateUser(@PathVariable UUID id,
+    @PutMapping(value = "/{userId}")
+    public ResponseEntity<UserModel> updateUser(@PathVariable UUID userId,
             @RequestBody @Validated(UserDto.UserView.UserPut.class) @JsonView(UserDto.UserView.UserPut.class) UserDto userDto) {
         UserModel obj = service.fromDTO(userDto);
-        obj = service.updateUser(id, obj);
+        obj = service.updateUser(userId, obj);
         obj = service.save(obj);
         return ResponseEntity.ok().body(obj);
     }
 
-    @PutMapping(value = "/{id}/password")
-    public ResponseEntity<Object> updatePassword(@PathVariable UUID id,
+    @PutMapping(value = "/{userId}/password")
+    public ResponseEntity<Object> updatePassword(@PathVariable UUID userId,
             @RequestBody @Validated(UserDto.UserView.PasswordPut.class) @JsonView(UserDto.UserView.PasswordPut.class) UserDto userDto) {
-        UserModel entity = service.findById(id);
+        UserModel entity = service.findById(userId);
         UserModel obj = service.fromDTO(userDto);
         if (entity.getPassword().equals(userDto.getOldPassword())) {
-            entity = service.updatePassword(id, obj);
+            entity = service.updatePassword(userId, obj);
             entity = service.save(entity);
         } else {
             throw new PasswordException("A senha antiga nao é igual à atual");
@@ -84,10 +85,10 @@ public class UserController {
     }
 
     @PutMapping(value = "/{id}/image")
-    public ResponseEntity<Object> updateImage(@PathVariable UUID id,
+    public ResponseEntity<Object> updateImage(@PathVariable UUID userId,
             @RequestBody @Validated(UserDto.UserView.ImagePut.class) @JsonView(UserDto.UserView.ImagePut.class) UserDto userDto) {
         UserModel obj = service.fromDTO(userDto);
-        obj = service.updateImage(id, obj);
+        obj = service.updateImage(userId, obj);
         obj = service.save(obj);
         return ResponseEntity.ok().body("Imagem alterada com sucesso");
     }

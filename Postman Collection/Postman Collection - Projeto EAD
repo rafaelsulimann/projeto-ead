@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "c4913161-dbec-4567-b928-3dad388bab37",
+		"name": "PROJETO-EAD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "SIGN UP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"rafaelsuliman\",\r\n    \"email\": \"rafitios@gmail.com\",\r\n    \"password\": \"123456789\",\r\n    \"fullName\": \"Rafael Xavier Sulimann\",\r\n    \"phoneNumber\": \"51981658626\",\r\n    \"cpf\": \"03728569003\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8087/auth/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "USER",
+			"item": [
+				{
+					"name": "USER - GET ALL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8087/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "creationDate,desc",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "cpf",
+									"value": "03728569003",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "sulimannrafael@gmail.com",
+									"disabled": true
+								},
+								{
+									"key": "userType",
+									"value": "STUDENT",
+									"disabled": true
+								},
+								{
+									"key": "userStatus",
+									"value": "BLOCKED",
+									"disabled": true
+								},
+								{
+									"key": "userName",
+									"value": "rafaelsulimann",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER - GET BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8087/users/53b0cf8e-865b-4744-a2f2-528021c42223",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"users",
+								"53b0cf8e-865b-4744-a2f2-528021c42223"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER - DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8087/users/28264645-48d6-48cf-afb0-8a3b9f06abe6",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"users",
+								"28264645-48d6-48cf-afb0-8a3b9f06abe6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER - UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"Rafael Sulimann\",\r\n    \"phoneNumber\": \"51981658626\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8087/users/53b0cf8e-865b-4744-a2f2-528021c42223",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"users",
+								"53b0cf8e-865b-4744-a2f2-528021c42223"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER - UPDATE PASSWORD",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"123456789\",\r\n    \"password\": \"Metallica#357\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8087/users/924115d7-5f00-4be7-bf05-f0219816e7ca/password",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"users",
+								"924115d7-5f00-4be7-bf05-f0219816e7ca",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER - UPDATE IMAGE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"imgUrl\": \"deu certo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8087/users/e87cf3d7-2f30-4773-91f5-eef231ee2a8d/image",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"users",
+								"e87cf3d7-2f30-4773-91f5-eef231ee2a8d",
+								"image"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

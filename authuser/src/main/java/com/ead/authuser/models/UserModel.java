@@ -30,7 +30,7 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private UUID userId;
 
     @Column(nullable = false, length = 50)
     private String userName;
@@ -65,10 +65,10 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
     public UserModel(){
     }
 
-    public UserModel(UUID id, String userName, String email, String password, String fullName, String phoneNumber,
+    public UserModel(UUID userId, String userName, String email, String password, String fullName, String phoneNumber,
             String cpf, String imgUrl, UserStatus userStatus, UserType userType, LocalDateTime creationDate,
             LocalDateTime lastUpdateTime) {
-        this.id = id;
+        this.userId = userId;
         this.userName = userName;
         this.email = email;
         this.password = password;
@@ -82,12 +82,12 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
         this.lastUpdateTime = lastUpdateTime;
     }
 
-    public UUID getId() {
-        return id;
+    public UUID getUserId() {
+        return userId;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {
@@ -182,7 +182,7 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((userId == null) ? 0 : userId.hashCode());
         return result;
     }
 
@@ -195,10 +195,10 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
         if (getClass() != obj.getClass())
             return false;
         UserModel other = (UserModel) obj;
-        if (id == null) {
-            if (other.id != null)
+        if (userId == null) {
+            if (other.userId != null)
                 return false;
-        } else if (!id.equals(other.id))
+        } else if (!userId.equals(other.userId))
             return false;
         return true;
     }
