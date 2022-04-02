@@ -2,6 +2,8 @@ package com.ead.course.models;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -11,12 +13,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.ead.course.models.enums.CourseLevel;
 import com.ead.course.models.enums.CourseStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
@@ -56,6 +60,10 @@ public class CourseModel implements Serializable {
     
     @Column(nullable = false)
     private UUID userInstructor;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "course")
+    private Set<ModuleModel> modules = new HashSet<>();
 
     public CourseModel(){
     }
@@ -143,6 +151,14 @@ public class CourseModel implements Serializable {
 
     public void setUserInstructor(UUID userInstructor) {
         this.userInstructor = userInstructor;
+    }
+
+    public Set<ModuleModel> getModules() {
+        return modules;
+    }
+
+    public void setModules(Set<ModuleModel> modules) {
+        this.modules = modules;
     }
 
     @Override

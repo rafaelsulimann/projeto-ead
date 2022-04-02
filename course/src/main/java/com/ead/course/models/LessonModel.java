@@ -9,10 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
@@ -38,15 +41,21 @@ public class LessonModel implements Serializable{
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime creationDate;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "module_id")
+    private ModuleModel module;
+
     public LessonModel(){
     }
 
-    public LessonModel(UUID lessonId, String title, String description, String videoUrl, LocalDateTime creationDate) {
+    public LessonModel(UUID lessonId, String title, String description, String videoUrl, LocalDateTime creationDate, ModuleModel module) {
         this.lessonId = lessonId;
         this.title = title;
         this.description = description;
         this.videoUrl = videoUrl;
         this.creationDate = creationDate;
+        this.module = module;
     }
 
     public UUID getLessonId() {
@@ -87,6 +96,14 @@ public class LessonModel implements Serializable{
 
     public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public ModuleModel getModule() {
+        return module;
+    }
+
+    public void setModule(ModuleModel module) {
+        this.module = module;
     }
 
     @Override
