@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.ead.authuser.services.exceptions.ExistsByCpfException;
 import com.ead.authuser.services.exceptions.ExistsByEmailException;
 import com.ead.authuser.services.exceptions.ExistsByUserNameException;
-import com.ead.authuser.services.exceptions.NotFoundException;
+import com.ead.authuser.services.exceptions.UserNotFoundException;
 import com.ead.authuser.services.exceptions.PasswordException;
 
 import org.springframework.http.HttpStatus;
@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class ResourceExcepionHandler {
+public class UserResourceExcepionHandler {
 
-    @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<StandardError> resourceNotFound(NotFoundException e, HttpServletRequest request){
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<StandardError> resourceNotFound(UserNotFoundException e, HttpServletRequest request){
         String error = "Objeto não encontrado";
         HttpStatus status = HttpStatus.NOT_FOUND;
         StandardError err = new StandardError(LocalDateTime.now(ZoneId.of("UTC")), status.value(), error, e.getMessage(), request.getRequestURI());

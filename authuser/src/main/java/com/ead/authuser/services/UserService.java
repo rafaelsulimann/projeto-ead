@@ -10,7 +10,7 @@ import com.ead.authuser.models.UserModel;
 import com.ead.authuser.models.enums.UserStatus;
 import com.ead.authuser.models.enums.UserType;
 import com.ead.authuser.repositories.UserRepository;
-import com.ead.authuser.services.exceptions.NotFoundException;
+import com.ead.authuser.services.exceptions.UserNotFoundException;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class UserService {
 
     public UserModel findById(UUID userId){        
         Optional<UserModel> obj = repository.findById(userId);
-        return obj.orElseThrow(() -> new NotFoundException(userId));  
+        return obj.orElseThrow(() -> new UserNotFoundException(userId));  
     }
 
     public void delete(UUID userId){

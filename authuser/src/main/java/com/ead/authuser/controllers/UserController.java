@@ -37,26 +37,26 @@ public class UserController {
     private UserService service;
 
     @GetMapping
-    public ResponseEntity<Page<UserModel>> findAll(SpecificationTemplate.UserSpec spec,
+    public ResponseEntity<Page<UserModel>> findAllUsers(SpecificationTemplate.UserSpec spec,
             @PageableDefault(page = 0, size = 10, sort = "userId", direction = Sort.Direction.ASC) Pageable pageable) {
         Page<UserModel> userModelPage = service.findAll(spec, pageable);
         if (!userModelPage.isEmpty()) {
             for (UserModel user : userModelPage.toList()) {
-                user.add(linkTo(methodOn(UserController.class).findById(user.getUserId())).withSelfRel());
+                user.add(linkTo(methodOn(UserController.class).findUserById(user.getUserId())).withSelfRel());
             }
         }
         return ResponseEntity.ok().body(userModelPage);
     }
 
     @GetMapping(value = "/{userId}")
-    public ResponseEntity<UserModel> findById(@PathVariable UUID userId) {
+    public ResponseEntity<UserModel> findUserById(@PathVariable UUID userId) {
         UserModel obj = service.findById(userId);
         return ResponseEntity.ok().body(obj);
     }
 
     @DeleteMapping(value = "/{userId}")
     public ResponseEntity<Object> delete(@PathVariable UUID userId) {
-        findById(userId);
+        findUserById(userId);
         service.delete(userId);
         return ResponseEntity.ok().body("Usuário deletado com sucesso");
     }
