@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class UserResourceExcepionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<StandardError> resourceNotFound(UserNotFoundException e, HttpServletRequest request){
+    public ResponseEntity<StandardError> userResourceNotFound(UserNotFoundException e, HttpServletRequest request){
         String error = "Objeto não encontrado";
         HttpStatus status = HttpStatus.NOT_FOUND;
         StandardError err = new StandardError(LocalDateTime.now(ZoneId.of("UTC")), status.value(), error, e.getMessage(), request.getRequestURI());

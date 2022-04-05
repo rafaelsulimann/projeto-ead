@@ -55,7 +55,7 @@ public class UserController {
     }
 
     @DeleteMapping(value = "/{userId}")
-    public ResponseEntity<Object> delete(@PathVariable UUID userId) {
+    public ResponseEntity<Object> deleteUser(@PathVariable UUID userId) {
         findUserById(userId);
         service.delete(userId);
         return ResponseEntity.ok().body("Usuário deletado com sucesso");
@@ -71,7 +71,7 @@ public class UserController {
     }
 
     @PutMapping(value = "/{userId}/password")
-    public ResponseEntity<Object> updatePassword(@PathVariable UUID userId,
+    public ResponseEntity<Object> updateUserPassword(@PathVariable UUID userId,
             @RequestBody @Validated(UserDto.UserView.PasswordPut.class) @JsonView(UserDto.UserView.PasswordPut.class) UserDto userDto) {
         UserModel entity = service.findById(userId);
         UserModel obj = service.fromDTO(userDto);
@@ -85,7 +85,7 @@ public class UserController {
     }
 
     @PutMapping(value = "/{id}/image")
-    public ResponseEntity<Object> updateImage(@PathVariable UUID userId,
+    public ResponseEntity<Object> updateUserImage(@PathVariable UUID userId,
             @RequestBody @Validated(UserDto.UserView.ImagePut.class) @JsonView(UserDto.UserView.ImagePut.class) UserDto userDto) {
         UserModel obj = service.fromDTO(userDto);
         obj = service.updateImage(userId, obj);

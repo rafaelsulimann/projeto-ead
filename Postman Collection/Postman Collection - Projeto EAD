@@ -354,6 +354,132 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "MODULES",
+			"item": [
+				{
+					"name": "MODULE - GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/courses/713c7ef7-8f69-43b4-ad11-5939c6f3aaec/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"courses",
+								"713c7ef7-8f69-43b4-ad11-5939c6f3aaec",
+								"modules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODULE - GET BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/courses/713c7ef7-8f69-43b4-ad11-5939c6f3aaec/modules/fbd74e5a-41cc-4174-965c-d49bb9ab36fd",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"courses",
+								"713c7ef7-8f69-43b4-ad11-5939c6f3aaec",
+								"modules",
+								"fbd74e5a-41cc-4174-965c-d49bb9ab36fd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODULE - CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Sou foda\",\r\n    \"description\": \"Simplismente porque sou o melhor de todos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8082/courses/713c7ef7-8f69-43b4-ad11-5939c6f3aaec/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"courses",
+								"713c7ef7-8f69-43b4-ad11-5939c6f3aaec",
+								"modules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODULE - DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/courses/713c7ef7-8f69-43b4-ad11-5939c6f3aaec/modules/fbffdf1c-9d53-4fed-8134-d49818cf9801",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"courses",
+								"713c7ef7-8f69-43b4-ad11-5939c6f3aaec",
+								"modules",
+								"fbffdf1c-9d53-4fed-8134-d49818cf9801"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MODULE - UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"O PAI eh o melhor de todos\",\r\n    \"description\": \"Porque sim\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8082/courses/713c7ef7-8f69-43b4-ad11-5939c6f3aaec/modules/fbd74e5a-41cc-4174-965c-d49bb9ab36fd",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"courses",
+								"713c7ef7-8f69-43b4-ad11-5939c6f3aaec",
+								"modules",
+								"fbd74e5a-41cc-4174-965c-d49bb9ab36fd"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
