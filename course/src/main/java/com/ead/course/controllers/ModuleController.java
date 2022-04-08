@@ -34,21 +34,21 @@ public class ModuleController {
     @Autowired
     private CourseService courseService;
 
-    @GetMapping(value = "courses/{courseId}/modules")
+    @GetMapping(value = "/courses/{courseId}/modules")
     public ResponseEntity<List<ModuleModel>> findAllModulesIntoCourse(@PathVariable UUID courseId){
         courseService.findById(courseId);
         List<ModuleModel> modulesList = moduleService.findAllModulesIntoCourse(courseId);
         return ResponseEntity.ok().body(modulesList);
     }
 
-    @GetMapping(value = "courses/{courseId}/modules/{moduleId}")
+    @GetMapping(value = "/courses/{courseId}/modules/{moduleId}")
     public ResponseEntity<ModuleModel> findModuleIntoCourse(@PathVariable UUID courseId, @PathVariable UUID moduleId){
         courseService.findById(courseId);
         ModuleModel obj = moduleService.findModuleIntoCourse(courseId, moduleId);
         return ResponseEntity.ok().body(obj);
     }
 
-    @PostMapping(value = "courses/{courseId}/modules")
+    @PostMapping(value = "/courses/{courseId}/modules")
     public ResponseEntity<ModuleModel> saveModule(@PathVariable UUID courseId, @RequestBody @Valid ModuleDto moduleDto){
         CourseModel course = courseService.findById(courseId);
         ModuleModel obj = moduleService.fromDto(moduleDto);

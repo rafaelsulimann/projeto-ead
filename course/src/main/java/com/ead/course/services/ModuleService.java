@@ -33,6 +33,11 @@ public class ModuleService {
         return moduleRepository.findAllModulesIntoCourse(couseId);
     }
 
+    public ModuleModel findById(UUID moduleId){
+        Optional<ModuleModel> obj = moduleRepository.findById(moduleId);
+        return obj.orElseThrow(() -> new ModuleNotFoundException(moduleId));
+    }
+
     public ModuleModel findModuleIntoCourse(UUID courseId, UUID moduleId){
         Optional<ModuleModel> obj = moduleRepository.findModuleIntoCourse(courseId, moduleId);
         return obj.orElseThrow(() -> new ModuleNotFoundException(moduleId));
