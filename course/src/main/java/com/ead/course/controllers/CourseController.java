@@ -1,7 +1,6 @@
 package com.ead.course.controllers;
 
 import java.net.URI;
-import java.util.List;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -9,8 +8,13 @@ import javax.validation.Valid;
 import com.ead.course.dtos.CourseDto;
 import com.ead.course.models.CourseModel;
 import com.ead.course.services.CourseService;
+import com.ead.course.specifications.SpecificationTemplate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,29 +36,31 @@ public class CourseController {
     private CourseService courseService;
 
     @GetMapping
-    public ResponseEntity<List<CourseModel>> findAllCourses(){
-        List<CourseModel> list = courseService.findAll();
+    public ResponseEntity<Page<CourseModel>> findAllCourses(SpecificationTemplate.CourseSpec spec,
+            @PageableDefault(page = 0, size = 10, sort = "creationDate", direction = Sort.Direction.ASC) Pageable pageable) {
+        Page<CourseModel> list = courseService.findAll(spec, pageable);
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{courseId}")
-    public ResponseEntity<CourseModel> findCourseById(@PathVariable UUID courseId){
+    public ResponseEntity<CourseModel> findCourseById(@PathVariable UUID courseId) {
         CourseModel obj = courseService.findById(courseId);
         return ResponseEntity.ok().body(obj);
     }
 
-
     @PostMapping
-    public ResponseEntity<CourseModel> saveCourse(@RequestBody @Valid CourseDto courseDto){
+    public ResponseEntity<CourseModel> saveCourse(@RequestBody @Valid CourseDto courseDto) {
         CourseModel obj = courseService.fromDto(courseDto);
         obj = courseService.insert(obj);
         obj = courseService.save(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{courseId}").buildAndExpand(obj.getCourseId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{courseId}").buildAndExpand(obj.getCourseId())
+                .toUri();
         return ResponseEntity.created(uri).body(obj);
     }
 
     @PutMapping(value = "/{courseId}")
-    public ResponseEntity<CourseModel> updateCourse(@PathVariable UUID courseId, @RequestBody @Valid CourseDto courseDto){
+    public ResponseEntity<CourseModel> updateCourse(@PathVariable UUID courseId,
+            @RequestBody @Valid CourseDto courseDto) {
         CourseModel obj = courseService.fromDto(courseDto);
         obj = courseService.updateCourse(courseId, obj);
         obj = courseService.save(obj);
@@ -62,10 +68,10 @@ public class CourseController {
     }
 
     @DeleteMapping(value = "/{courseId}")
-    public ResponseEntity<Object> deleteCourse(@PathVariable UUID courseId){
+    public ResponseEntity<Object> deleteCourse(@PathVariable UUID courseId) {
         CourseModel obj = courseService.findById(courseId);
         courseService.delete(obj);
         return ResponseEntity.ok().body("Curso deletado com sucesso");
     }
-    
+
 }

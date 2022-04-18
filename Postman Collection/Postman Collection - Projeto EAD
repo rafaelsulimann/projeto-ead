@@ -414,14 +414,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8082/courses/713c7ef7-8f69-43b4-ad11-5939c6f3aaec/modules",
+							"raw": "localhost:8082/courses/bf63d2c4-5e6e-47db-a7bf-754528c71b36/modules",
 							"host": [
 								"localhost"
 							],
 							"port": "8082",
 							"path": [
 								"courses",
-								"713c7ef7-8f69-43b4-ad11-5939c6f3aaec",
+								"bf63d2c4-5e6e-47db-a7bf-754528c71b36",
 								"modules"
 							]
 						}
@@ -474,6 +474,119 @@
 								"713c7ef7-8f69-43b4-ad11-5939c6f3aaec",
 								"modules",
 								"fbd74e5a-41cc-4174-965c-d49bb9ab36fd"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "LESSONS",
+			"item": [
+				{
+					"name": "LESSONS - GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/modules/fbd74e5a-41cc-4174-965c-d49bb9ab36fd/lessons",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"modules",
+								"fbd74e5a-41cc-4174-965c-d49bb9ab36fd",
+								"lessons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LESSONS - GET BY ID",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "LESSONS - CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Sou foda\",\r\n    \"description\": \"Simplismente porque sou o melhor de todos\",\r\n    \"videoUrl\": \"https://www.youtube.com/watch?v=bXs5MD-5ZzY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8082/modules/9dcf1109-1543-4092-b8cb-969ba40edc77/lessons",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"modules",
+								"9dcf1109-1543-4092-b8cb-969ba40edc77",
+								"lessons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LESSON - UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"fodao\",\r\n    \"description\": \"Simplismente porque sou o melhor de todos\",\r\n    \"videoUrl\": \"https://www.youtube.com/watch?v=bXs5MD-5ZzY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8082/modules/fbd74e5a-41cc-4174-965c-d49bb9ab36fd/lessons/40d52a53-bcc1-4d9f-97b3-374ae2a2bfb3",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"modules",
+								"fbd74e5a-41cc-4174-965c-d49bb9ab36fd",
+								"lessons",
+								"40d52a53-bcc1-4d9f-97b3-374ae2a2bfb3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LESSON - DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/modules/fbd74e5a-41cc-4174-965c-d49bb9ab36fd/lessons/",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"modules",
+								"fbd74e5a-41cc-4174-965c-d49bb9ab36fd",
+								"lessons",
+								""
 							]
 						}
 					},
