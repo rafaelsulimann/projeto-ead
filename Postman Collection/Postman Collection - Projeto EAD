@@ -255,6 +255,38 @@
 							"port": "8082",
 							"path": [
 								"courses"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "courseId,asc",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "rafa",
+									"disabled": true
+								},
+								{
+									"key": "courseStatus",
+									"value": "CONCLUDED",
+									"disabled": true
+								},
+								{
+									"key": "courseLevel",
+									"value": "ADVANCED",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -286,7 +318,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Curso 4\",\r\n    \"description\": \"Aprenda Spring 10 e 11 para aplicações\",\r\n    \"userInstructor\": \"ed235441-89e3-4de5-87af-0cfb2ac8a9d8\",\r\n    \"courseStatus\": \"CONCLUDED\",\r\n    \"courseLevel\": \"BEGINNER\"\r\n}",
+							"raw": "{\r\n    \"name\": \"rafael 4\",\r\n    \"description\": \"Aprenda Spring 10 e 11 para aplicações\",\r\n    \"userInstructor\": \"ed235441-89e3-4de5-87af-0cfb2ac8a9d8\",\r\n    \"courseStatus\": \"CONCLUDED\",\r\n    \"courseLevel\": \"BEGINNER\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -312,14 +344,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8082/courses/8bed5f32-d51a-4e2e-9d38-e6d39621d88e",
+							"raw": "localhost:8082/courses/713c7ef7-8f69-43b4-ad11-5939c6f3aaec",
 							"host": [
 								"localhost"
 							],
 							"port": "8082",
 							"path": [
 								"courses",
-								"8bed5f32-d51a-4e2e-9d38-e6d39621d88e"
+								"713c7ef7-8f69-43b4-ad11-5939c6f3aaec"
 							]
 						}
 					},
@@ -364,15 +396,37 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8082/courses/713c7ef7-8f69-43b4-ad11-5939c6f3aaec/modules",
+							"raw": "localhost:8082/courses/bf63d2c4-5e6e-47db-a7bf-754528c71b36/modules",
 							"host": [
 								"localhost"
 							],
 							"port": "8082",
 							"path": [
 								"courses",
-								"713c7ef7-8f69-43b4-ad11-5939c6f3aaec",
+								"bf63d2c4-5e6e-47db-a7bf-754528c71b36",
 								"modules"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "creationDate,DESC",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "Deus",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -406,7 +460,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Sou foda\",\r\n    \"description\": \"Simplismente porque sou o melhor de todos\"\r\n}",
+							"raw": "{\r\n    \"title\": \"Obrigado Deus\",\r\n    \"description\": \"Topzera\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -490,15 +544,37 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8082/modules/fbd74e5a-41cc-4174-965c-d49bb9ab36fd/lessons",
+							"raw": "localhost:8082/modules/3bf4e737-e067-49e0-b4de-d2a728b4756d/lessons",
 							"host": [
 								"localhost"
 							],
 							"port": "8082",
 							"path": [
 								"modules",
-								"fbd74e5a-41cc-4174-965c-d49bb9ab36fd",
+								"3bf4e737-e067-49e0-b4de-d2a728b4756d",
 								"lessons"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "creationDate,ASC",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "title",
+									"value": "1",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -508,7 +584,20 @@
 					"name": "LESSONS - GET BY ID",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/modules/fbd74e5a-41cc-4174-965c-d49bb9ab36fd/lessons/",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"modules",
+								"fbd74e5a-41cc-4174-965c-d49bb9ab36fd",
+								"lessons",
+								""
+							]
+						}
 					},
 					"response": []
 				},
@@ -519,7 +608,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Sou foda\",\r\n    \"description\": \"Simplismente porque sou o melhor de todos\",\r\n    \"videoUrl\": \"https://www.youtube.com/watch?v=bXs5MD-5ZzY\"\r\n}",
+							"raw": "{\r\n    \"title\": \"Aula 3\",\r\n    \"description\": \"Bora lá\",\r\n    \"videoUrl\": \"https://www.youtube.com/watch?v=bXs5MD-5ZzY\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -527,14 +616,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8082/modules/9dcf1109-1543-4092-b8cb-969ba40edc77/lessons",
+							"raw": "localhost:8082/modules/3bf4e737-e067-49e0-b4de-d2a728b4756d/lessons",
 							"host": [
 								"localhost"
 							],
 							"port": "8082",
 							"path": [
 								"modules",
-								"9dcf1109-1543-4092-b8cb-969ba40edc77",
+								"3bf4e737-e067-49e0-b4de-d2a728b4756d",
 								"lessons"
 							]
 						}

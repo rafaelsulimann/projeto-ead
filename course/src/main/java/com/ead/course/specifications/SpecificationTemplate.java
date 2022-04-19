@@ -50,6 +50,5 @@ public class SpecificationTemplate {
             Expression<Collection<LessonModel>> moduleLessons = module.get("lessons");
             return cb.and(cb.equal(module.get("moduleId"), moduleId), cb.isMember(lesson, moduleLessons));
         };
-    }
-    
+    }    
 }

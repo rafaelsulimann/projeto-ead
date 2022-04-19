@@ -10,10 +10,13 @@ import com.ead.authuser.services.exceptions.ExistsByEmailException;
 import com.ead.authuser.services.exceptions.ExistsByUserNameException;
 import com.fasterxml.jackson.annotation.JsonView;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +27,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(value = "/auth")
 public class AuthenticationController {
+
+    Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
 
     @Autowired
     private UserService service;
@@ -45,5 +50,15 @@ public class AuthenticationController {
         obj = service.save(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{userId}").buildAndExpand(obj.getUserId()).toUri();
         return ResponseEntity.created(uri).body(obj);
+    }
+
+    @GetMapping(value = "/")
+    public String index(){
+        logger.trace("TRACE");
+        logger.debug("DEBUG");
+        logger.info("INFO");
+        logger.warn("WARN");
+        logger.error("ERROR");     
+        return "Logging Spring Boot...";
     }
 }
