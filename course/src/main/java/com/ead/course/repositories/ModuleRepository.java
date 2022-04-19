@@ -7,12 +7,13 @@ import java.util.UUID;
 import com.ead.course.models.ModuleModel;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ModuleRepository extends JpaRepository<ModuleModel, UUID> {
+public interface ModuleRepository extends JpaRepository<ModuleModel, UUID>, JpaSpecificationExecutor<ModuleModel> {
 
     @Query(value = "select * from tb_modules where course_id = :courseId", nativeQuery = true)
     List<ModuleModel> findAllModulesIntoCourse(@Param("courseId") UUID couseId);

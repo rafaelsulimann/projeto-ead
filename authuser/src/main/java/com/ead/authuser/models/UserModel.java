@@ -23,7 +23,7 @@ import org.springframework.hateoas.RepresentationModel;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
-@Table (name = "tb_users")
+@Table(name = "tb_users")
 public class UserModel extends RepresentationModel<UserModel> implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -56,13 +56,13 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
     private UserType userType;
 
     @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private LocalDateTime creationDate;
     @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private LocalDateTime lastUpdateTime;
 
-    public UserModel(){
+    public UserModel() {
     }
 
     public UserModel(UUID userId, String userName, String email, String password, String fullName, String phoneNumber,
@@ -203,6 +203,4 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
         return true;
     }
 
-    
-    
 }

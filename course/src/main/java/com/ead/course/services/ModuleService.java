@@ -18,6 +18,9 @@ import com.ead.course.services.exceptions.ModuleNotFoundException;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,8 +32,8 @@ public class ModuleService {
     @Autowired
     private LessonRepository lessonRepository;
 
-    public List<ModuleModel> findAllModulesIntoCourse(UUID couseId){
-        return moduleRepository.findAllModulesIntoCourse(couseId);
+    public Page<ModuleModel> findAllModulesIntoCourse(Specification<ModuleModel> spec, Pageable pageable){
+        return moduleRepository.findAll(spec, pageable);
     }
 
     public ModuleModel findById(UUID moduleId){
