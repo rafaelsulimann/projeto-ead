@@ -132,6 +132,10 @@ public class LessonModel implements Serializable{
         return true;
     }
 
-    
+    @Override
+    public String toString() {
+        return "LessonModel [creationDate=" + creationDate + ", description=" + description + ", lessonId=" + lessonId
+                + ", module=" + module + ", title=" + title + ", videoUrl=" + videoUrl + "]";
+    }    
     
 }

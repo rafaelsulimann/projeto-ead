@@ -21,7 +21,7 @@ public class UserResourceExcepionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<StandardError> userResourceNotFound(UserNotFoundException e, HttpServletRequest request){
-        String error = "Objeto não encontrado";
+        String error = "Usuário não encontrado";
         HttpStatus status = HttpStatus.NOT_FOUND;
         StandardError err = new StandardError(LocalDateTime.now(ZoneId.of("UTC")), status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);
@@ -29,7 +29,7 @@ public class UserResourceExcepionHandler {
 
     @ExceptionHandler(ExistsByUserNameException.class)
     public ResponseEntity<StandardError> existsByUserNameException(ExistsByUserNameException e, HttpServletRequest request){
-        String error = "Exists by username";
+        String error = "Username existente";
         HttpStatus status = HttpStatus.CONFLICT;
         StandardError err = new StandardError(LocalDateTime.now(ZoneId.of("UTC")), status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);
@@ -37,7 +37,7 @@ public class UserResourceExcepionHandler {
 
     @ExceptionHandler(ExistsByEmailException.class)
     public ResponseEntity<StandardError> existsByEmailException(ExistsByEmailException e, HttpServletRequest request){
-        String error = "Exists by email";
+        String error = "Email existente";
         HttpStatus status = HttpStatus.CONFLICT;
         StandardError err = new StandardError(LocalDateTime.now(ZoneId.of("UTC")), status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);
@@ -45,7 +45,7 @@ public class UserResourceExcepionHandler {
 
     @ExceptionHandler(ExistsByCpfException.class)
     public ResponseEntity<StandardError> existsByCpfException(ExistsByCpfException e, HttpServletRequest request){
-        String error = "Exists by cpf";
+        String error = "CPF existente";
         HttpStatus status = HttpStatus.CONFLICT;
         StandardError err = new StandardError(LocalDateTime.now(ZoneId.of("UTC")), status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);

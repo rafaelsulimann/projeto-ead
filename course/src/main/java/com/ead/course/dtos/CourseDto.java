@@ -90,5 +90,11 @@ public class CourseDto implements Serializable{
     public void setUserInstructor(UUID userInstructor) {
         this.userInstructor = userInstructor;
     }
+
+    @Override
+    public String toString() {
+        return "CourseDto [courseLevel=" + courseLevel + ", courseStatus=" + courseStatus + ", description="
+                + description + ", imgUrl=" + imgUrl + ", name=" + name + ", userInstructor=" + userInstructor + "]";
+    }    
     
 }

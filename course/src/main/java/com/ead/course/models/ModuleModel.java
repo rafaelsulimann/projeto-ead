@@ -139,6 +139,10 @@ public class ModuleModel implements Serializable{
         return true;
     }
 
-    
+    @Override
+    public String toString() {
+        return "ModuleModel [course=" + course + ", creationDate=" + creationDate + ", description=" + description
+                + ", lessons=" + lessons + ", moduleId=" + moduleId + ", title=" + title + "]";
+    }    
     
 }

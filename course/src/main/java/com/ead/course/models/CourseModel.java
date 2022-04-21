@@ -191,5 +191,12 @@ public class CourseModel implements Serializable {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "CourseModel [courseId=" + courseId + ", courseLevel=" + courseLevel + ", courseStatus=" + courseStatus
+                + ", creationDate=" + creationDate + ", description=" + description + ", imgUrl=" + imgUrl
+                + ", lasUpdateDate=" + lasUpdateDate + ", modules=" + modules + ", name=" + name + ", userInstructor="
+                + userInstructor + "]";
+    }
     
 }

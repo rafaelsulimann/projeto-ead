@@ -27,6 +27,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(value = "/courses")
@@ -50,9 +53,12 @@ public class CourseController {
 
     @PostMapping
     public ResponseEntity<CourseModel> saveCourse(@RequestBody @Valid CourseDto courseDto) {
+        log.debug("POST saveCourse courseDto received {} ", courseDto.toString());
         CourseModel obj = courseService.fromDto(courseDto);
         obj = courseService.insert(obj);
         obj = courseService.save(obj);
+        log.debug("POST saveCourse courseModel saved {} ", courseDto.toString());
+        log.info("Course saved successfully courseId {} ", obj.getCourseId());
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{courseId}").buildAndExpand(obj.getCourseId())
                 .toUri();
         return ResponseEntity.created(uri).body(obj);
@@ -61,16 +67,22 @@ public class CourseController {
     @PutMapping(value = "/{courseId}")
     public ResponseEntity<CourseModel> updateCourse(@PathVariable UUID courseId,
             @RequestBody @Valid CourseDto courseDto) {
+        log.debug("PUT updateCourse courseDto received {} ", courseDto.toString());
         CourseModel obj = courseService.fromDto(courseDto);
         obj = courseService.updateCourse(courseId, obj);
         obj = courseService.save(obj);
+        log.debug("PUT updateCourse courseModel saved {} ", courseDto.toString());
+        log.info("Course saved successfully courseId {} ", obj.getCourseId());
         return ResponseEntity.ok().body(obj);
     }
 
     @DeleteMapping(value = "/{courseId}")
     public ResponseEntity<Object> deleteCourse(@PathVariable UUID courseId) {
+        log.debug("DELETE deleteCourse courseId received {} ", courseId);
         CourseModel obj = courseService.findById(courseId);
         courseService.delete(obj);
+        log.debug("DELETE deleteCourse courseId saved {} ", courseId);
+        log.info("Course deleted successfully courseId {} ", courseId);
         return ResponseEntity.ok().body("Curso deletado com sucesso");
     }
 

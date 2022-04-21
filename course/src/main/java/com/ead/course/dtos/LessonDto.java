@@ -49,6 +49,9 @@ public class LessonDto implements Serializable {
         this.videoUrl = videoUrl;
     }
 
-    
+    @Override
+    public String toString() {
+        return "LessonDto [description=" + description + ", title=" + title + ", videoUrl=" + videoUrl + "]";
+    }    
     
 }

@@ -36,6 +36,11 @@ public class ModuleDto implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }  
+    }
+
+    @Override
+    public String toString() {
+        return "ModuleDto [description=" + description + ", title=" + title + "]";
+    }      
     
 }

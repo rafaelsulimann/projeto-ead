@@ -134,5 +134,14 @@ public class UserDto implements Serializable{
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
+
+    @Override
+    public String toString() {
+        return "UserDto [cpf=" + cpf + ", email=" + email + ", fullName=" + fullName + ", imgUrl=" + imgUrl
+                + ", oldPassword=" + oldPassword + ", password=" + password + ", phoneNumber=" + phoneNumber
+                + ", userName=" + userName + "]";
+    }
+
+    
     
 }

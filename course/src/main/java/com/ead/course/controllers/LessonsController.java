@@ -28,6 +28,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class LessonsController {
@@ -57,10 +60,13 @@ public class LessonsController {
     @PostMapping(value = "/modules/{moduleId}/lessons")
     public ResponseEntity<LessonModel> saveLesson(@PathVariable UUID moduleId,
             @RequestBody @Valid LessonDto lessonDto) {
+        log.debug("POST saveLesson lessonDto received {} ", lessonDto.toString());
         ModuleModel module = moduleService.findById(moduleId);
         LessonModel obj = lessonService.fromDto(lessonDto);
         obj = lessonService.insert(module, obj);
         obj = lessonService.save(obj);
+        log.debug("POST saveLesson lessonModel saved {} ", lessonDto.toString());
+        log.info("Lesson saved successfully lessonId {} ", obj.getLessonId());
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{lessonId}").buildAndExpand(obj.getLessonId())
                 .toUri();
         return ResponseEntity.created(uri).body(obj);
@@ -69,17 +75,23 @@ public class LessonsController {
     @PutMapping(value = "/modules/{moduleId}/lessons/{lessonId}")
     public ResponseEntity<LessonModel> updateLesson(@PathVariable UUID moduleId, @PathVariable UUID lessonId,
             @RequestBody @Valid LessonDto lessonDto) {
+        log.debug("PUT updateLesson lessonDto received {} ", lessonDto.toString());
         moduleService.findById(moduleId);
         LessonModel obj = lessonService.fromDto(lessonDto);
         obj = lessonService.updateLesson(moduleId, lessonId, obj);
         obj = lessonService.save(obj);
+        log.debug("PUT updateLesson lessonModel saved {} ", lessonDto.toString());
+        log.info("Lesson saved successfully lessonId {} ", obj.getLessonId());
         return ResponseEntity.ok().body(obj);
     }
 
     @DeleteMapping(value = "modules/{moduleId}/lessons/{lessonId}")
     public ResponseEntity<Object> deleteLesson(@PathVariable UUID moduleId, @PathVariable UUID lessonId) {
+        log.debug("DELETE deleteLesson lessonId received {} ", lessonId);
         findLessonIntoModule(moduleId, lessonId);
         lessonService.delete(lessonId);
+        log.debug("DELETE deleteLesson lessonId saved {} ", lessonId);
+        log.info("Lesson deleted successfully lessonId {} ", lessonId);
         return ResponseEntity.ok().body("Aula deletada com sucesso");
     }
 }

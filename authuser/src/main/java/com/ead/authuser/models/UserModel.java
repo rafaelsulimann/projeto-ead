@@ -203,4 +203,14 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "UserModel [cpf=" + cpf + ", creationDate=" + creationDate + ", email=" + email + ", fullName="
+                + fullName + ", imgUrl=" + imgUrl + ", lastUpdateTime=" + lastUpdateTime + ", password=" + password
+                + ", phoneNumber=" + phoneNumber + ", userId=" + userId + ", userName=" + userName + ", userStatus="
+                + userStatus + ", userType=" + userType + "]";
+    }
+
+    
+
 }
