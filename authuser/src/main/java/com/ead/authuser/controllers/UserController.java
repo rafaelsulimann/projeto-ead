@@ -74,7 +74,7 @@ public class UserController {
         UserModel obj = userService.fromDTO(userDto);
         obj = userService.updateUser(userId, obj);
         obj = userService.save(obj);
-        log.debug("PUT updateUser userModel saved {} ", obj.toString());
+        log.debug("PUT updateUser userId saved {} ", obj.getUserId());
         log.info("User saved successfully userId {} ", obj.getUserId());
         return ResponseEntity.ok().body(obj);
     }
@@ -88,7 +88,7 @@ public class UserController {
         if (entity.getPassword().equals(userDto.getOldPassword())) {
             entity = userService.updatePassword(userId, obj);
             entity = userService.save(entity);
-            log.debug("PUT updateUserPassword userModel saved {} ", entity.toString());
+            log.debug("PUT updateUserPassword userId saved {} ", entity.getUserId());
             log.info("User saved successfully userId {} ", entity.getUserId());
         } else {
             log.warn("Senha {} incorreta", userDto.getOldPassword());
@@ -104,7 +104,7 @@ public class UserController {
         UserModel obj = userService.fromDTO(userDto);
         obj = userService.updateImage(userId, obj);
         obj = userService.save(obj);
-        log.debug("PUT updateUserImage userModel saved {} ", obj.toString());
+        log.debug("PUT updateUserImage userId saved {} ", obj.getUserId());
         log.info("User saved successfully userId {} ", obj.getUserId());
         return ResponseEntity.ok().body("Imagem alterada com sucesso");
     }

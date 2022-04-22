@@ -19,3 +19,16 @@ spring:
         jdbc:
           lob:
             non-contextual-creation: true
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:
+    com:
+      ead: TRACE
+    root: INFO 
+    org:
+      springframework:
+        web: DEBUG 
+      hibernate: INFO

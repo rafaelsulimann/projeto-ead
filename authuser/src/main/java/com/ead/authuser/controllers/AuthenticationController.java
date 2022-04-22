@@ -51,7 +51,7 @@ public class AuthenticationController {
         UserModel obj = service.fromDTO(userDto);
         obj = service.insert(obj);
         obj = service.save(obj);
-        log.debug("POST registerUser userModel saved {} ", obj.toString());
+        log.debug("POST registerUser userId saved {} ", obj.getUserId());
         log.info("User saved successfully userId {} ", obj.getUserId());
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{userId}").buildAndExpand(obj.getUserId()).toUri();
         return ResponseEntity.created(uri).body(obj);

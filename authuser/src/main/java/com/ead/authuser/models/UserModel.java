@@ -2,15 +2,19 @@ package com.ead.authuser.models;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.ead.authuser.models.enums.UserStatus;
@@ -18,6 +22,7 @@ import com.ead.authuser.models.enums.UserType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.springframework.hateoas.RepresentationModel;
 
@@ -61,6 +66,10 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
     @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
     private LocalDateTime lastUpdateTime;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "userModel", fetch = FetchType.LAZY)
+    Set<UserCourseModel> usersCourses = new HashSet<>();
 
     public UserModel() {
     }
@@ -176,6 +185,14 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
 
     public void setLastUpdateTime(LocalDateTime lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
+    }
+    
+    public Set<UserCourseModel> getUsersCourses() {
+        return usersCourses;
+    }
+
+    public void setUsersCourses(Set<UserCourseModel> usersCourses) {
+        this.usersCourses = usersCourses;
     }
 
     @Override

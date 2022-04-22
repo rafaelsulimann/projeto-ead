@@ -70,6 +70,10 @@ public class CourseModel implements Serializable {
     @Fetch(FetchMode.SUBSELECT)
     private Set<ModuleModel> modules = new HashSet<>();
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "courseModel", fetch = FetchType.LAZY)
+    private Set<CourseUserModel> coursesUsers = new HashSet<>();
+
     public CourseModel(){
     }
 
@@ -164,6 +168,14 @@ public class CourseModel implements Serializable {
 
     public void setModules(Set<ModuleModel> modules) {
         this.modules = modules;
+    }
+    
+    public Set<CourseUserModel> getCoursesUsers() {
+        return coursesUsers;
+    }
+
+    public void setCoursesUsers(Set<CourseUserModel> coursesUsers) {
+        this.coursesUsers = coursesUsers;
     }
 
     @Override

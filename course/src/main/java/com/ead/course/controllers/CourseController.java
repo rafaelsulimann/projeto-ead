@@ -57,7 +57,7 @@ public class CourseController {
         CourseModel obj = courseService.fromDto(courseDto);
         obj = courseService.insert(obj);
         obj = courseService.save(obj);
-        log.debug("POST saveCourse courseModel saved {} ", courseDto.toString());
+        log.debug("POST saveCourse courseId saved {} ", obj.getCourseId());
         log.info("Course saved successfully courseId {} ", obj.getCourseId());
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{courseId}").buildAndExpand(obj.getCourseId())
                 .toUri();
@@ -71,7 +71,7 @@ public class CourseController {
         CourseModel obj = courseService.fromDto(courseDto);
         obj = courseService.updateCourse(courseId, obj);
         obj = courseService.save(obj);
-        log.debug("PUT updateCourse courseModel saved {} ", courseDto.toString());
+        log.debug("PUT updateCourse courseId saved {} ", obj.getCourseId());
         log.info("Course saved successfully courseId {} ", obj.getCourseId());
         return ResponseEntity.ok().body(obj);
     }
