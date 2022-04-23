@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -22,8 +23,8 @@ public class UserCourseModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID userCourseId;
 
-    @Column(name = "user_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id")
     private UserModel userModel;
 
     @Column(nullable = false)
