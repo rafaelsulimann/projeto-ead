@@ -280,6 +280,31 @@
 			"name": "COURSE",
 			"item": [
 				{
+					"name": "COURSE-USER",
+					"item": [
+						{
+							"name": "GET ALL USERS BY COURSE",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8082/courses/49f94e66-bcc2-456f-80b9-21dd5f9842d9/users",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"courses",
+										"49f94e66-bcc2-456f-80b9-21dd5f9842d9",
+										"users"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "COURSE - GET ALL",
 					"request": {
 						"method": "GET",
