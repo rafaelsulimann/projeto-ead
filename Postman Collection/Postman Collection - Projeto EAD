@@ -42,6 +42,39 @@
 			"name": "USER",
 			"item": [
 				{
+					"name": "USER-COURSE",
+					"item": [
+						{
+							"name": "GET ALL COURSES BY USER",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8087/users/a5b44ee1-c285-492b-a541-fb4f24315c87/courses",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8087",
+									"path": [
+										"users",
+										"a5b44ee1-c285-492b-a541-fb4f24315c87",
+										"courses"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "name,asc",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "USER - GET ALL",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -59,7 +92,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8087/users",
+							"raw": "localhost:8087/users?courseId=49f94e66-bcc2-456f-80b9-21dd5f9842d9",
 							"host": [
 								"localhost"
 							],
@@ -107,6 +140,10 @@
 									"key": "userName",
 									"value": "rafaelsulimann",
 									"disabled": true
+								},
+								{
+									"key": "courseId",
+									"value": "49f94e66-bcc2-456f-80b9-21dd5f9842d9"
 								}
 							]
 						}
@@ -248,7 +285,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8082/courses",
+							"raw": "localhost:8082/courses?userId=a5b44ee1-c285-492b-a541-fb4f24315c87",
 							"host": [
 								"localhost"
 							],
@@ -286,6 +323,10 @@
 									"key": "courseLevel",
 									"value": "ADVANCED",
 									"disabled": true
+								},
+								{
+									"key": "userId",
+									"value": "a5b44ee1-c285-492b-a541-fb4f24315c87"
 								}
 							]
 						}
