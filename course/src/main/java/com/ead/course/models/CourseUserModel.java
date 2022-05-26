@@ -25,7 +25,7 @@ public class CourseUserModel implements Serializable{
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "course_id")
-    private CourseModel courseModel;
+    private CourseModel course;
 
     @Column(nullable = false)
     private UUID userId;
@@ -33,9 +33,9 @@ public class CourseUserModel implements Serializable{
     public CourseUserModel(){
     }
 
-    public CourseUserModel(UUID courseUserId, CourseModel courseModel, UUID userId) {
+    public CourseUserModel(UUID courseUserId, CourseModel course, UUID userId) {
         this.courseUserId = courseUserId;
-        this.courseModel = courseModel;
+        this.course = course;
         this.userId = userId;
     }
 
@@ -47,12 +47,12 @@ public class CourseUserModel implements Serializable{
         this.courseUserId = courseUserId;
     }
 
-    public CourseModel getCourseModel() {
-        return courseModel;
+    public CourseModel getCourse() {
+        return course;
     }
 
-    public void setCourseModel(CourseModel courseModel) {
-        this.courseModel = courseModel;
+    public void setCourse(CourseModel course) {
+        this.course = course;
     }
 
     public UUID getUserId() {

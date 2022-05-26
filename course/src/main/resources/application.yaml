@@ -32,3 +32,8 @@ logging:
       springframework:
         web: DEBUG 
       hibernate: INFO
+
+ead:
+  api:
+    url:
+      authuser: 'http://localhost:8087'
