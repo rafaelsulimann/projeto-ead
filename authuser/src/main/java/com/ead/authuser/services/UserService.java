@@ -89,5 +89,11 @@ public class UserService {
     public boolean existsByCpf(String cpf){
         return repository.existsByCpf(cpf);
     }
+
+    public UserModel insertInstructor(UserModel obj){
+        obj.setUserType(UserType.INSTRUCTOR);
+        obj.setLastUpdateTime(LocalDateTime.now(ZoneId.of("UTC")));
+        return obj;
+    }
     
 }
