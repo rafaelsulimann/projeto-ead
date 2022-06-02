@@ -75,7 +75,7 @@ public class CourseUserController {
                 throw new UserNotFoundException(subscriptionDto.getUserId());
             }
         }   
-        CourseUserModel courseUserModel = courseUserService.save(course.convertToCourseUserModel(subscriptionDto.getUserId()));
+        CourseUserModel courseUserModel = courseUserService.saveAndSendSubscriptionUserInCourse(course.convertToCourseUserModel(subscriptionDto.getUserId()));
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{courseId}").buildAndExpand(courseUserModel.getCourseUserId()).toUri();
         return ResponseEntity.created(uri).body(courseUserModel);
     }

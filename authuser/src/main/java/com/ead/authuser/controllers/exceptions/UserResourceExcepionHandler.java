@@ -7,9 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.ead.authuser.services.exceptions.ExistsByCpfException;
 import com.ead.authuser.services.exceptions.ExistsByEmailException;
+import com.ead.authuser.services.exceptions.ExistsByUserAndCourseException;
 import com.ead.authuser.services.exceptions.ExistsByUserNameException;
-import com.ead.authuser.services.exceptions.UserNotFoundException;
 import com.ead.authuser.services.exceptions.PasswordException;
+import com.ead.authuser.services.exceptions.UserNotFoundException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,6 +55,14 @@ public class UserResourceExcepionHandler {
     @ExceptionHandler(PasswordException.class)
     public ResponseEntity<StandardError> passwordException(PasswordException e, HttpServletRequest request){
         String error = "Password inválido";
+        HttpStatus status = HttpStatus.CONFLICT;
+        StandardError err = new StandardError(LocalDateTime.now(ZoneId.of("UTC")), status.value(), error, e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(ExistsByUserAndCourseException.class)
+    public ResponseEntity<StandardError> existsByUserAndCourseException(ExistsByUserAndCourseException e, HttpServletRequest request){
+        String error = "Exists By User and Course id";
         HttpStatus status = HttpStatus.CONFLICT;
         StandardError err = new StandardError(LocalDateTime.now(ZoneId.of("UTC")), status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);

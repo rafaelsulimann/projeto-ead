@@ -195,6 +195,10 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
         this.usersCourses = usersCourses;
     }
 
+    public UserCourseModel convertToUserCourseModel(UUID courseId){
+        return new UserCourseModel(null, this, courseId);
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;

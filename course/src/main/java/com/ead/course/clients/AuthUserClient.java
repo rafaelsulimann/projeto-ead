@@ -3,10 +3,6 @@ package com.ead.course.clients;
 import java.util.List;
 import java.util.UUID;
 
-import com.ead.course.dtos.ResponsePageDto;
-import com.ead.course.dtos.UserDto;
-import com.ead.course.services.UtilsService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -17,6 +13,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
+
+import com.ead.course.dtos.CourseUserDto;
+import com.ead.course.dtos.ResponsePageDto;
+import com.ead.course.dtos.UserDto;
+import com.ead.course.services.UtilsService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -55,6 +56,14 @@ public class AuthUserClient {
     public ResponseEntity<UserDto> findOneUserById(UUID userId){
         String url = REQUEST_URI_AUTHUSER + "/users/" + userId;
         return restTemplate.exchange(url, HttpMethod.GET, null, UserDto.class);
+    }
+
+    public void postSubscriptionUserInCourse(UUID courseId, UUID userId) {
+        String url = REQUEST_URI_AUTHUSER + "/users/" + userId + "/courses/subscription";
+        CourseUserDto courseUserDto = new CourseUserDto();
+        courseUserDto.setUserId(userId);
+        courseUserDto.setCourseId(courseId);
+        restTemplate.postForObject(url, courseUserDto, String.class);
     }
     
 }
