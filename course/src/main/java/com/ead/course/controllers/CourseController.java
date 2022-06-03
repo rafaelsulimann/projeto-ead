@@ -5,17 +5,14 @@ import java.util.UUID;
 
 import javax.validation.Valid;
 
-import com.ead.course.dtos.CourseDto;
-import com.ead.course.models.CourseModel;
-import com.ead.course.services.CourseService;
-import com.ead.course.specifications.SpecificationTemplate;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +25,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.ead.course.dtos.CourseDto;
+import com.ead.course.models.CourseModel;
+import com.ead.course.services.CourseService;
+import com.ead.course.specifications.SpecificationTemplate;
+import com.ead.course.validations.CourseValidator;
+
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -38,6 +41,9 @@ public class CourseController {
 
     @Autowired
     private CourseService courseService;
+
+    @Autowired
+    private CourseValidator courseValidator;
 
     @GetMapping
     public ResponseEntity<Page<CourseModel>> findAllCourses(SpecificationTemplate.CourseSpec spec,
@@ -60,8 +66,12 @@ public class CourseController {
     }
 
     @PostMapping
-    public ResponseEntity<CourseModel> saveCourse(@RequestBody @Valid CourseDto courseDto) {
+    public ResponseEntity<Object> saveCourse(@RequestBody CourseDto courseDto, Errors errors) {
         log.debug("POST saveCourse courseDto received {} ", courseDto.toString());
+        courseValidator.validate(courseDto, errors);
+        if(errors.hasErrors()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
+        }
         CourseModel obj = courseService.fromDto(courseDto);
         obj = courseService.insert(obj);
         obj = courseService.save(obj);
