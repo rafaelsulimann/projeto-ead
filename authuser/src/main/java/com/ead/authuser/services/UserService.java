@@ -2,15 +2,11 @@ package com.ead.authuser.services;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.ead.authuser.dtos.UserDto;
-import com.ead.authuser.models.UserModel;
-import com.ead.authuser.models.enums.UserStatus;
-import com.ead.authuser.models.enums.UserType;
-import com.ead.authuser.repositories.UserRepository;
-import com.ead.authuser.services.exceptions.UserNotFoundException;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +15,23 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.ead.authuser.dtos.UserDto;
+import com.ead.authuser.models.UserCourseModel;
+import com.ead.authuser.models.UserModel;
+import com.ead.authuser.models.enums.UserStatus;
+import com.ead.authuser.models.enums.UserType;
+import com.ead.authuser.repositories.UserCourseRepository;
+import com.ead.authuser.repositories.UserRepository;
+import com.ead.authuser.services.exceptions.UserNotFoundException;
+
 @Service
 public class UserService {
      
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    private UserCourseRepository userCourseRepository;
 
     public Page<UserModel> findAll(Specification<UserModel> spec, Pageable pageable) {
         return repository.findAll(spec, pageable);
@@ -34,8 +42,13 @@ public class UserService {
         return obj.orElseThrow(() -> new UserNotFoundException(userId));  
     }
 
-    public void delete(UUID userId){
-        repository.deleteById(userId);
+    @Transactional
+    public void delete(UserModel userModel){
+        List<UserCourseModel> userCourseModelList = userCourseRepository.findAllUsersCoursesIntoUser(userModel.getUserId());
+        if(!userCourseModelList.isEmpty()){
+            userCourseRepository.deleteAll(userCourseModelList);
+        }
+        repository.delete(userModel);
     }
 
     public UserModel save(UserModel userModel){

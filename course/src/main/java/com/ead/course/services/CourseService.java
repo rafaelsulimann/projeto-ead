@@ -8,21 +8,23 @@ import java.util.UUID;
 
 import javax.transaction.Transactional;
 
-import com.ead.course.dtos.CourseDto;
-import com.ead.course.models.CourseModel;
-import com.ead.course.models.LessonModel;
-import com.ead.course.models.ModuleModel;
-import com.ead.course.repositories.CourseRepository;
-import com.ead.course.repositories.LessonRepository;
-import com.ead.course.repositories.ModuleRepository;
-import com.ead.course.services.exceptions.CourseNotFoundException;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import com.ead.course.dtos.CourseDto;
+import com.ead.course.models.CourseModel;
+import com.ead.course.models.CourseUserModel;
+import com.ead.course.models.LessonModel;
+import com.ead.course.models.ModuleModel;
+import com.ead.course.repositories.CourseRepository;
+import com.ead.course.repositories.CourseUserRepository;
+import com.ead.course.repositories.LessonRepository;
+import com.ead.course.repositories.ModuleRepository;
+import com.ead.course.services.exceptions.CourseNotFoundException;
 
 @Service
 public class CourseService {
@@ -35,6 +37,9 @@ public class CourseService {
 
     @Autowired
     private LessonRepository lessonRepository;
+
+    @Autowired
+    private CourseUserRepository courseUserRepository;
 
     public Page<CourseModel> findAll(Specification<CourseModel> spec, Pageable pageable){
         return courseRepository.findAll(spec, pageable);
@@ -77,6 +82,10 @@ public class CourseService {
                 }
             }
             moduleRepository.deleteAll(moduleModelList);
+        }
+        List<CourseUserModel> courseUserModelList = courseUserRepository.findAllCoursesUsersIntoCourse(obj.getCourseId());
+        if(!courseUserModelList.isEmpty()){
+            courseUserRepository.deleteAll(courseUserModelList);
         }
         courseRepository.delete(obj);
     }
