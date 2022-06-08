@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "c4913161-dbec-4567-b928-3dad388bab37",
 		"name": "PROJETO-EAD",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19199025"
 	},
 	"item": [
 		{
@@ -15,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userName\": \"rafaelsuliman\",\r\n    \"email\": \"rafitios@gmail.com\",\r\n    \"password\": \"123456789\",\r\n    \"fullName\": \"Rafael Xavier Sulimann\",\r\n    \"phoneNumber\": \"51981658626\",\r\n    \"cpf\": \"03728569003\"\r\n}",
+							"raw": "{\r\n    \"userName\": \"gilbertoSulimann\",\r\n    \"email\": \"gilbertoSulimann@gmail.com\",\r\n    \"password\": \"65435286974\",\r\n    \"fullName\": \"Gilberto Sulimann\",\r\n    \"phoneNumber\": \"51968352614\",\r\n    \"cpf\": \"00000000001\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -71,6 +72,69 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "POST USER COURSE SUBSCRIPTION",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"courseId\": \"bf63d2c4-5e6e-47db-a7bf-754528c71b36\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8087/users/e83514ec-0217-40e0-9bba-5b5d80c5ba2b/courses/subscription",
+									"host": [
+										"localhost"
+									],
+									"port": "8087",
+									"path": [
+										"users",
+										"e83514ec-0217-40e0-9bba-5b5d80c5ba2b",
+										"courses",
+										"subscription"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "INSTRUCTOR",
+					"item": [
+						{
+							"name": "USER - UPDATE TO INSTRUCTOR",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\":\"a5b44ee1-c285-492b-a541-fb4f24315c87\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8087/instructors/subscription",
+									"host": [
+										"localhost"
+									],
+									"port": "8087",
+									"path": [
+										"instructors",
+										"subscription"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -92,7 +156,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8087/users?courseId=49f94e66-bcc2-456f-80b9-21dd5f9842d9",
+							"raw": "localhost:8087/users",
 							"host": [
 								"localhost"
 							],
@@ -143,7 +207,8 @@
 								},
 								{
 									"key": "courseId",
-									"value": "49f94e66-bcc2-456f-80b9-21dd5f9842d9"
+									"value": "49f94e66-bcc2-456f-80b9-21dd5f9842d9",
+									"disabled": true
 								}
 							]
 						}
@@ -175,14 +240,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8087/users/28264645-48d6-48cf-afb0-8a3b9f06abe6",
+							"raw": "localhost:8087/users/a5b44ee1-c285-492b-a541-fb4f24315c87",
 							"host": [
 								"localhost"
 							],
 							"port": "8087",
 							"path": [
 								"users",
-								"28264645-48d6-48cf-afb0-8a3b9f06abe6"
+								"a5b44ee1-c285-492b-a541-fb4f24315c87"
 							]
 						}
 					},
@@ -301,6 +366,36 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "POST SUBSCRIPTION USER IN COURSE",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": \"d85ae845-84a4-475a-aa39-a68567e568ec\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8082/courses/bf63d2c4-5e6e-47db-a7bf-754528c71b36/users/subscription",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"courses",
+										"bf63d2c4-5e6e-47db-a7bf-754528c71b36",
+										"users",
+										"subscription"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -310,7 +405,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8082/courses?userId=a5b44ee1-c285-492b-a541-fb4f24315c87",
+							"raw": "localhost:8082/courses",
 							"host": [
 								"localhost"
 							],
@@ -351,7 +446,8 @@
 								},
 								{
 									"key": "userId",
-									"value": "a5b44ee1-c285-492b-a541-fb4f24315c87"
+									"value": "a5b44ee1-c285-492b-a541-fb4f24315c87",
+									"disabled": true
 								}
 							]
 						}
@@ -384,7 +480,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"rafael 4\",\r\n    \"description\": \"Aprenda Spring 10 e 11 para aplicações\",\r\n    \"userInstructor\": \"ed235441-89e3-4de5-87af-0cfb2ac8a9d8\",\r\n    \"courseStatus\": \"CONCLUDED\",\r\n    \"courseLevel\": \"BEGINNER\"\r\n}",
+							"raw": "{\r\n    \"name\": \"User Instructor\",\r\n    \"description\": \"Aprenda Spring 10 e 11 para aplicações\",\r\n    \"userInstructor\": \"a5b44ee1-c285-492b-a541-fb4f24315c87\",\r\n    \"courseStatus\": \"CONCLUDED\",\r\n    \"courseLevel\": \"BEGINNER\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -410,14 +506,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8082/courses/713c7ef7-8f69-43b4-ad11-5939c6f3aaec",
+							"raw": "localhost:8082/courses/bf63d2c4-5e6e-47db-a7bf-754528c71b36",
 							"host": [
 								"localhost"
 							],
 							"port": "8082",
 							"path": [
 								"courses",
-								"713c7ef7-8f69-43b4-ad11-5939c6f3aaec"
+								"bf63d2c4-5e6e-47db-a7bf-754528c71b36"
 							]
 						}
 					},
