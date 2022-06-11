@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.ead.course.clients.AuthUserClient;
 import com.ead.course.dtos.CourseDto;
 import com.ead.course.models.CourseModel;
 import com.ead.course.models.CourseUserModel;
@@ -40,6 +41,9 @@ public class CourseService {
 
     @Autowired
     private CourseUserRepository courseUserRepository;
+
+    @Autowired
+    private AuthUserClient authUserClient;
 
     public Page<CourseModel> findAll(Specification<CourseModel> spec, Pageable pageable){
         return courseRepository.findAll(spec, pageable);
@@ -73,6 +77,7 @@ public class CourseService {
 
     @Transactional
     public void delete(CourseModel obj){
+        boolean deleteCourseInAuthUser = false;
         List<ModuleModel> moduleModelList = moduleRepository.findAllModulesIntoCourse(obj.getCourseId());
         if(!moduleModelList.isEmpty()){
             for(ModuleModel module : moduleModelList){
@@ -86,8 +91,12 @@ public class CourseService {
         List<CourseUserModel> courseUserModelList = courseUserRepository.findAllCoursesUsersIntoCourse(obj.getCourseId());
         if(!courseUserModelList.isEmpty()){
             courseUserRepository.deleteAll(courseUserModelList);
+            deleteCourseInAuthUser = true;
         }
         courseRepository.delete(obj);
+        if(deleteCourseInAuthUser){
+            authUserClient.deleteCourseInAuthUser(obj.getCourseId());
+        }
     }
 
     public CourseModel fromDto(CourseDto courseDto){

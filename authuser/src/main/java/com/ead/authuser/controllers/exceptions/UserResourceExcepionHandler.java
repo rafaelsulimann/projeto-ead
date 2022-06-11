@@ -5,17 +5,18 @@ import java.time.ZoneId;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import com.ead.authuser.services.exceptions.CourseNotFoundException;
 import com.ead.authuser.services.exceptions.ExistsByCpfException;
 import com.ead.authuser.services.exceptions.ExistsByEmailException;
 import com.ead.authuser.services.exceptions.ExistsByUserAndCourseException;
 import com.ead.authuser.services.exceptions.ExistsByUserNameException;
 import com.ead.authuser.services.exceptions.PasswordException;
 import com.ead.authuser.services.exceptions.UserNotFoundException;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class UserResourceExcepionHandler {
@@ -64,6 +65,13 @@ public class UserResourceExcepionHandler {
     public ResponseEntity<StandardError> existsByUserAndCourseException(ExistsByUserAndCourseException e, HttpServletRequest request){
         String error = "Exists By User and Course id";
         HttpStatus status = HttpStatus.CONFLICT;
+        StandardError err = new StandardError(LocalDateTime.now(ZoneId.of("UTC")), status.value(), error, e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
+    @ExceptionHandler(CourseNotFoundException.class)
+    public ResponseEntity<StandardError> courseNotFoundException(CourseNotFoundException e, HttpServletRequest request){
+        String error = "Curso não encontrado";
+        HttpStatus status = HttpStatus.NOT_FOUND;
         StandardError err = new StandardError(LocalDateTime.now(ZoneId.of("UTC")), status.value(), error, e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }

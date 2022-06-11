@@ -24,11 +24,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8087/ead-authuser/auth/signup",
+							"raw": "localhost:8080/ead-authuser/auth/signup",
 							"host": [
 								"localhost"
 							],
-							"port": "8087",
+							"port": "8080",
 							"path": [
 								"ead-authuser",
 								"auth",
@@ -52,12 +52,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8087/ead-authuser/users/aa7df8d4-8a31-43ae-ae01-2e6c27085642/courses",
+									"raw": "http://localhost:8080/ead-authuser/users/aa7df8d4-8a31-43ae-ae01-2e6c27085642/courses",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8087",
+									"port": "8080",
 									"path": [
 										"ead-authuser",
 										"users",
@@ -90,11 +90,11 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8087/ead-authuser/users/e83514ec-0217-40e0-9bba-5b5d80c5ba2b/courses/subscription",
+									"raw": "localhost:8080/ead-authuser/users/e83514ec-0217-40e0-9bba-5b5d80c5ba2b/courses/subscription",
 									"host": [
 										"localhost"
 									],
-									"port": "8087",
+									"port": "8080",
 									"path": [
 										"ead-authuser",
 										"users",
@@ -226,11 +226,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8087/ead-authuser/users/53b0cf8e-865b-4744-a2f2-528021c42223",
+							"raw": "localhost:8080/ead-authuser/users/53b0cf8e-865b-4744-a2f2-528021c42223",
 							"host": [
 								"localhost"
 							],
-							"port": "8087",
+							"port": "8080",
 							"path": [
 								"ead-authuser",
 								"users",
@@ -246,11 +246,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8087/ead-authuser/users/a5b44ee1-c285-492b-a541-fb4f24315c87",
+							"raw": "localhost:8080/ead-authuser/users/a5b44ee1-c285-492b-a541-fb4f24315c87",
 							"host": [
 								"localhost"
 							],
-							"port": "8087",
+							"port": "8080",
 							"path": [
 								"ead-authuser",
 								"users",
@@ -275,11 +275,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8087/ead-authuser/users/53b0cf8e-865b-4744-a2f2-528021c42223",
+							"raw": "localhost:8080/ead-authuser/users/53b0cf8e-865b-4744-a2f2-528021c42223",
 							"host": [
 								"localhost"
 							],
-							"port": "8087",
+							"port": "8080",
 							"path": [
 								"ead-authuser",
 								"users",
@@ -304,11 +304,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8087/ead-authuser/users/924115d7-5f00-4be7-bf05-f0219816e7ca/password",
+							"raw": "localhost:8080/ead-authuser/users/924115d7-5f00-4be7-bf05-f0219816e7ca/password",
 							"host": [
 								"localhost"
 							],
-							"port": "8087",
+							"port": "8080",
 							"path": [
 								"ead-authuser",
 								"users",
@@ -334,11 +334,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8087/ead-authuser/users/e87cf3d7-2f30-4773-91f5-eef231ee2a8d/image",
+							"raw": "localhost:8080/ead-authuser/users/e87cf3d7-2f30-4773-91f5-eef231ee2a8d/image",
 							"host": [
 								"localhost"
 							],
-							"port": "8087",
+							"port": "8080",
 							"path": [
 								"ead-authuser",
 								"users",
@@ -363,15 +363,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8082/ead-course/courses/fcee29f5-0399-4d04-973c-91d0af52e411/users",
+									"raw": "localhost:8080/ead-course/courses/f744ea26-52d8-439f-9b2d-193d204c8ee2/users",
 									"host": [
 										"localhost"
 									],
-									"port": "8082",
+									"port": "8080",
 									"path": [
 										"ead-course",
 										"courses",
-										"fcee29f5-0399-4d04-973c-91d0af52e411",
+										"f744ea26-52d8-439f-9b2d-193d204c8ee2",
 										"users"
 									]
 								}
@@ -393,15 +393,15 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8082/ead-course/courses/fcee29f5-0399-4d04-973c-91d0af52e411/users/subscription",
+									"raw": "localhost:8080/ead-course/courses/f744ea26-52d8-439f-9b2d-193d204c8ee2/users/subscription",
 									"host": [
 										"localhost"
 									],
-									"port": "8082",
+									"port": "8080",
 									"path": [
 										"ead-course",
 										"courses",
-										"fcee29f5-0399-4d04-973c-91d0af52e411",
+										"f744ea26-52d8-439f-9b2d-193d204c8ee2",
 										"users",
 										"subscription"
 									]
@@ -473,11 +473,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8082/ead-course/courses/8bed5f32-d51a-4e2e-9d38-e6d39621d88e",
+							"raw": "localhost:8080/ead-course/courses/8bed5f32-d51a-4e2e-9d38-e6d39621d88e",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8080",
 							"path": [
 								"ead-course",
 								"courses",
@@ -502,11 +502,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8082/ead-course/courses",
+							"raw": "localhost:8080/ead-course/courses",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8080",
 							"path": [
 								"ead-course",
 								"courses"
@@ -521,15 +521,15 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8082/ead-course/courses/bf63d2c4-5e6e-47db-a7bf-754528c71b36",
+							"raw": "localhost:8080/ead-course/courses/f744ea26-52d8-439f-9b2d-193d204c8ee2",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8080",
 							"path": [
 								"ead-course",
 								"courses",
-								"bf63d2c4-5e6e-47db-a7bf-754528c71b36"
+								"f744ea26-52d8-439f-9b2d-193d204c8ee2"
 							]
 						}
 					},
@@ -550,11 +550,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8082/ead-course/courses/713c7ef7-8f69-43b4-ad11-5939c6f3aaec",
+							"raw": "localhost:8080/ead-course/courses/713c7ef7-8f69-43b4-ad11-5939c6f3aaec",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8080",
 							"path": [
 								"ead-course",
 								"courses",
@@ -575,11 +575,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8082/ead-course/courses/bf63d2c4-5e6e-47db-a7bf-754528c71b36/modules",
+							"raw": "localhost:8080/ead-course/courses/bf63d2c4-5e6e-47db-a7bf-754528c71b36/modules",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8080",
 							"path": [
 								"ead-course",
 								"courses",
@@ -618,11 +618,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8082/ead-course/courses/713c7ef7-8f69-43b4-ad11-5939c6f3aaec/modules/fbd74e5a-41cc-4174-965c-d49bb9ab36fd",
+							"raw": "localhost:8080/ead-course/courses/713c7ef7-8f69-43b4-ad11-5939c6f3aaec/modules/fbd74e5a-41cc-4174-965c-d49bb9ab36fd",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8080",
 							"path": [
 								"ead-course",
 								"courses",
@@ -649,11 +649,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8082/ead-course/courses/bf63d2c4-5e6e-47db-a7bf-754528c71b36/modules",
+							"raw": "localhost:8080/ead-course/courses/bf63d2c4-5e6e-47db-a7bf-754528c71b36/modules",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8080",
 							"path": [
 								"ead-course",
 								"courses",
@@ -670,11 +670,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8082/ead-course/courses/713c7ef7-8f69-43b4-ad11-5939c6f3aaec/modules/fbffdf1c-9d53-4fed-8134-d49818cf9801",
+							"raw": "localhost:8080/ead-course/courses/713c7ef7-8f69-43b4-ad11-5939c6f3aaec/modules/fbffdf1c-9d53-4fed-8134-d49818cf9801",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8080",
 							"path": [
 								"ead-course",
 								"courses",
@@ -701,11 +701,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8082/ead-course/courses/713c7ef7-8f69-43b4-ad11-5939c6f3aaec/modules/fbd74e5a-41cc-4174-965c-d49bb9ab36fd",
+							"raw": "localhost:8080/ead-course/courses/713c7ef7-8f69-43b4-ad11-5939c6f3aaec/modules/fbd74e5a-41cc-4174-965c-d49bb9ab36fd",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8080",
 							"path": [
 								"ead-course",
 								"courses",
@@ -728,11 +728,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8082/ead-course/modules/3bf4e737-e067-49e0-b4de-d2a728b4756d/lessons",
+							"raw": "localhost:8080/ead-course/modules/3bf4e737-e067-49e0-b4de-d2a728b4756d/lessons",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8080",
 							"path": [
 								"ead-course",
 								"modules",
@@ -771,11 +771,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8082/ead-course/modules/fbd74e5a-41cc-4174-965c-d49bb9ab36fd/lessons/",
+							"raw": "localhost:8080/ead-course/modules/fbd74e5a-41cc-4174-965c-d49bb9ab36fd/lessons/",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8080",
 							"path": [
 								"ead-course",
 								"modules",
@@ -802,11 +802,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8082/ead-course/modules/3bf4e737-e067-49e0-b4de-d2a728b4756d/lessons",
+							"raw": "localhost:8080/ead-course/modules/3bf4e737-e067-49e0-b4de-d2a728b4756d/lessons",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8080",
 							"path": [
 								"ead-course",
 								"modules",
@@ -832,11 +832,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8082/ead-course/modules/fbd74e5a-41cc-4174-965c-d49bb9ab36fd/lessons/40d52a53-bcc1-4d9f-97b3-374ae2a2bfb3",
+							"raw": "localhost:8080/ead-course/modules/fbd74e5a-41cc-4174-965c-d49bb9ab36fd/lessons/40d52a53-bcc1-4d9f-97b3-374ae2a2bfb3",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8080",
 							"path": [
 								"ead-course",
 								"modules",
@@ -854,11 +854,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8082/ead-course/modules/fbd74e5a-41cc-4174-965c-d49bb9ab36fd/lessons/",
+							"raw": "localhost:8080/ead-course/modules/fbd74e5a-41cc-4174-965c-d49bb9ab36fd/lessons/",
 							"host": [
 								"localhost"
 							],
-							"port": "8082",
+							"port": "8080",
 							"path": [
 								"ead-course",
 								"modules",
