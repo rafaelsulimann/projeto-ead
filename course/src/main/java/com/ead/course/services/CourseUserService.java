@@ -35,4 +35,13 @@ public class CourseUserService {
     public boolean existsByCourseAndUserId(CourseModel courseModel, UUID userId){
         return courseUserRepository.existsByCourseAndUserId(courseModel, userId);
     }
+
+    public boolean existsByUserId(UUID userId){
+        return courseUserRepository.existsByUserId(userId);
+    }
+
+    @Transactional
+    public void deleteCourseUserByUser(UUID userId){
+        courseUserRepository.deleteAllByUserId(userId);
+    }
 }

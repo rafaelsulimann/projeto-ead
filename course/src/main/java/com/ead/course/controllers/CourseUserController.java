@@ -5,6 +5,23 @@ import java.util.UUID;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 import com.ead.course.clients.AuthUserClient;
 import com.ead.course.dtos.SubscriptionDto;
 import com.ead.course.dtos.UserDto;
@@ -16,22 +33,6 @@ import com.ead.course.services.CourseUserService;
 import com.ead.course.services.exceptions.ExistsByCourseAndUserIdException;
 import com.ead.course.services.exceptions.UserIsBlockedException;
 import com.ead.course.services.exceptions.UserNotFoundException;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpStatusCodeException;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -79,6 +80,15 @@ public class CourseUserController {
         CourseUserModel courseUserModel = courseUserService.saveAndSendSubscriptionUserInCourse(course.convertToCourseUserModel(subscriptionDto.getUserId()));
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{courseId}").buildAndExpand(courseUserModel.getCourseUserId()).toUri();
         return ResponseEntity.created(uri).body(courseUserModel);
+    }
+
+    @DeleteMapping(value = "/courses/users/{userId}")
+    public ResponseEntity<Object> deleteCourseUserByUser(@PathVariable UUID userId){
+        if(!courseUserService.existsByUserId(userId)){
+            throw new UserNotFoundException(userId);
+        }
+        courseUserService.deleteCourseUserByUser(userId);
+        return ResponseEntity.ok().body("Course User deletado com sucesso");
     }
 
 }

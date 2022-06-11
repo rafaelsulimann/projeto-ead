@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.ead.authuser.clients.CourseClient;
 import com.ead.authuser.dtos.UserDto;
 import com.ead.authuser.models.UserCourseModel;
 import com.ead.authuser.models.UserModel;
@@ -33,6 +34,9 @@ public class UserService {
     @Autowired
     private UserCourseRepository userCourseRepository;
 
+    @Autowired
+    private CourseClient courseClient;
+
     public Page<UserModel> findAll(Specification<UserModel> spec, Pageable pageable) {
         return repository.findAll(spec, pageable);
     }
@@ -44,11 +48,16 @@ public class UserService {
 
     @Transactional
     public void delete(UserModel userModel){
+        boolean deleteUserInCourse = false;
         List<UserCourseModel> userCourseModelList = userCourseRepository.findAllUsersCoursesIntoUser(userModel.getUserId());
         if(!userCourseModelList.isEmpty()){
             userCourseRepository.deleteAll(userCourseModelList);
+            deleteUserInCourse = true;
         }
         repository.delete(userModel);
+        if(deleteUserInCourse){
+            courseClient.deleteUserInCourse(userModel.getUserId());
+        }
     }
 
     public UserModel save(UserModel userModel){
