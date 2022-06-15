@@ -1,13 +1,9 @@
 package com.ead.authuser.controllers;
 
-import java.util.UUID;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-import com.ead.authuser.dtos.UserDto;
-import com.ead.authuser.models.UserModel;
-import com.ead.authuser.services.UserService;
-import com.ead.authuser.services.exceptions.PasswordException;
-import com.ead.authuser.specifications.SpecificationTemplate;
-import com.fasterxml.jackson.annotation.JsonView;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,13 +19,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.extern.log4j.Log4j2;
+import com.ead.authuser.dtos.UserDto;
+import com.ead.authuser.models.UserModel;
+import com.ead.authuser.services.UserService;
+import com.ead.authuser.services.exceptions.PasswordException;
+import com.ead.authuser.specifications.SpecificationTemplate;
+import com.fasterxml.jackson.annotation.JsonView;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @RestController
@@ -42,15 +41,8 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<Page<UserModel>> findAllUsers(SpecificationTemplate.UserSpec spec,
-            @PageableDefault(page = 0, size = 10, sort = "userId", direction = Sort.Direction.ASC) Pageable pageable,
-            @RequestParam(required = false) UUID courseId) {
-        Page<UserModel> userModelPage = null;
-        if(courseId != null){
-            userModelPage = userService.findAll(SpecificationTemplate.userCourseId(courseId).and(spec), pageable);
-        }
-        else{
-            userModelPage = userService.findAll(spec, pageable);
-        }
+            @PageableDefault(page = 0, size = 10, sort = "userId", direction = Sort.Direction.ASC) Pageable pageable) {
+        Page<UserModel> userModelPage = userService.findAll(spec, pageable);
         if (!userModelPage.isEmpty()) {
             for (UserModel user : userModelPage.toList()) {
                 user.add(linkTo(methodOn(UserController.class).findUserById(user.getUserId())).withSelfRel());
