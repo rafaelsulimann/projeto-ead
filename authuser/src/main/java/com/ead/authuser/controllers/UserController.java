@@ -3,6 +3,9 @@ package com.ead.authuser.controllers;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +28,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ead.authuser.dtos.UserDto;
 import com.ead.authuser.models.UserModel;
 import com.ead.authuser.services.UserService;
-import com.ead.authuser.services.exceptions.PasswordException;
 import com.ead.authuser.specifications.SpecificationTemplate;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -48,64 +51,93 @@ public class UserController {
                 user.add(linkTo(methodOn(UserController.class).findUserById(user.getUserId())).withSelfRel());
             }
         }
-        return ResponseEntity.ok().body(userModelPage);
+        return ResponseEntity.status(HttpStatus.OK).body(userModelPage);
     }
 
     @GetMapping(value = "/{userId}")
-    public ResponseEntity<UserModel> findUserById(@PathVariable UUID userId) {
-        UserModel obj = userService.findById(userId);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<Object> findUserById(@PathVariable UUID userId) {
+        Optional<UserModel> userModelOptional = userService.findById(userId);
+        if(!userModelOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.OK).body(userModelOptional.get());
+        }
     }
 
     @DeleteMapping(value = "/{userId}")
     public ResponseEntity<Object> deleteUser(@PathVariable UUID userId) {
         log.debug("DELETE deleteUser userId received {} ", userId);
-        ResponseEntity<UserModel> user = findUserById(userId);
-        userService.delete(user.getBody());
-        log.debug("DELETE deleteUser userId saved {} ", userId);
-        log.info("User deleted successfully userId {} ", userId);
-        return ResponseEntity.ok().body("Usuário deletado com sucesso");
+        Optional<UserModel> userModelOptional = userService.findById(userId);
+        if(userModelOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+        else{
+            userService.delete(userModelOptional.get());
+            log.debug("DELETE deleteUser userId saved {} ", userId);
+            log.info("User deleted successfully userId {} ", userId);
+            return ResponseEntity.status(HttpStatus.OK).body("User deleted successfully");
+        }
     }
 
     @PutMapping(value = "/{userId}")
-    public ResponseEntity<UserModel> updateUser(@PathVariable UUID userId,
+    public ResponseEntity<Object> updateUser(@PathVariable UUID userId,
             @RequestBody @Validated(UserDto.UserView.UserPut.class) @JsonView(UserDto.UserView.UserPut.class) UserDto userDto) {
         log.debug("PUT updateUser userDto received {} ", userDto.toString());
-        UserModel obj = userService.fromDTO(userDto);
-        obj = userService.updateUser(userId, obj);
-        obj = userService.save(obj);
-        log.debug("PUT updateUser userId saved {} ", obj.getUserId());
-        log.info("User saved successfully userId {} ", obj.getUserId());
-        return ResponseEntity.ok().body(obj);
+        Optional<UserModel> userModelOptional = userService.findById(userId);
+        if(userModelOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+        else{
+            var userModel = userModelOptional.get();
+            userModel.setFullName(userDto.getFullName());
+            userModel.setPhoneNumber(userDto.getPhoneNumber());
+            userModel.setCpf(userDto.getCpf());
+            userModel.setLastUpdateTime(LocalDateTime.now(ZoneId.of("UTC")));
+            userService.save(userModel);
+            log.debug("PUT updateUser userId saved {} ", userModel.getUserId());
+            log.info("User saved successfully userId {} ", userModel.getUserId());
+            return ResponseEntity.status(HttpStatus.OK).body(userModel);
+        }
     }
 
     @PutMapping(value = "/{userId}/password")
     public ResponseEntity<Object> updateUserPassword(@PathVariable UUID userId,
             @RequestBody @Validated(UserDto.UserView.PasswordPut.class) @JsonView(UserDto.UserView.PasswordPut.class) UserDto userDto) {
         log.debug("PUT updateUserPassword userDto received {} ", userDto.toString());
-        UserModel entity = userService.findById(userId);
-        UserModel obj = userService.fromDTO(userDto);
-        if (entity.getPassword().equals(userDto.getOldPassword())) {
-            entity = userService.updatePassword(userId, obj);
-            entity = userService.save(entity);
-            log.debug("PUT updateUserPassword userId saved {} ", entity.getUserId());
-            log.info("User saved successfully userId {} ", entity.getUserId());
-        } else {
-            log.warn("Senha {} incorreta", userDto.getOldPassword());
-            throw new PasswordException("A senha antiga nao é igual à atual");
+        Optional<UserModel> userModelOptional = userService.findById(userId);
+        if(userModelOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        } if(!userModelOptional.get().getPassword().equals(userDto.getOldPassword())){
+            log.warn("Mismatched old password userId {} ", userId);
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Error: Mismatched old password!");
+        }else{
+            var userModel = userModelOptional.get();
+            userModel.setPassword(userDto.getPassword());
+            userModel.setLastUpdateTime(LocalDateTime.now(ZoneId.of("UTC")));
+            userService.save(userModel);
+            log.debug("PUT updateUserPassword userId saved {} ", userModel.getUserId());
+            log.info("User saved successfully userId {} ", userModel.getUserId());
+            return ResponseEntity.status(HttpStatus.OK).body("Password updated successfully.");
         }
-        return ResponseEntity.ok().body("Senha alterada com sucesso");
     }
 
-    @PutMapping(value = "/{id}/image")
+    @PutMapping(value = "/{userId}/image")
     public ResponseEntity<Object> updateUserImage(@PathVariable UUID userId,
             @RequestBody @Validated(UserDto.UserView.ImagePut.class) @JsonView(UserDto.UserView.ImagePut.class) UserDto userDto) {
         log.debug("PUT updateUserImage userDto received {} ", userDto.toString());
-        UserModel obj = userService.fromDTO(userDto);
-        obj = userService.updateImage(userId, obj);
-        obj = userService.save(obj);
-        log.debug("PUT updateUserImage userId saved {} ", obj.getUserId());
-        log.info("User saved successfully userId {} ", obj.getUserId());
-        return ResponseEntity.ok().body("Imagem alterada com sucesso");
+        Optional<UserModel> userModelOptional = userService.findById(userId);
+        if(userModelOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+        else{
+            var userModel = userModelOptional.get();
+            userModel.setImgUrl(userDto.getImgUrl());
+            userModel.setLastUpdateTime(LocalDateTime.now(ZoneId.of("UTC")));
+            userService.save(userModel);
+            log.debug("PUT updateUserImage userId saved {} ", userModel.getUserId());
+            log.info("User saved successfully userId {} ", userModel.getUserId());
+            return ResponseEntity.status(HttpStatus.OK).body(userModel);
+        }
     }
 }

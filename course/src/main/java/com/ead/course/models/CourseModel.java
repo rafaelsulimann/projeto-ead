@@ -55,7 +55,7 @@ public class CourseModel implements Serializable {
 
     @Column(nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
-    private LocalDateTime lasUpdateDate;
+    private LocalDateTime lastUpdateDate;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -82,13 +82,13 @@ public class CourseModel implements Serializable {
     }
 
     public CourseModel(UUID courseId, String name, String description, String imgUrl, LocalDateTime creationDate,
-            LocalDateTime lasUpdateDate, CourseStatus courseStatus, CourseLevel courseLevel, UUID userInstructor) {
+            LocalDateTime lastUpdateDate, CourseStatus courseStatus, CourseLevel courseLevel, UUID userInstructor) {
         this.courseId = courseId;
         this.name = name;
         this.description = description;
         this.imgUrl = imgUrl;
         this.creationDate = creationDate;
-        this.lasUpdateDate = lasUpdateDate;
+        this.lastUpdateDate = lastUpdateDate;
         this.courseStatus = courseStatus;
         this.courseLevel = courseLevel;
         this.userInstructor = userInstructor;
@@ -134,12 +134,12 @@ public class CourseModel implements Serializable {
         this.creationDate = creationDate;
     }
 
-    public LocalDateTime getLasUpdateDate() {
-        return lasUpdateDate;
+    public LocalDateTime getLastUpdateDate() {
+        return lastUpdateDate;
     }
 
-    public void setLasUpdateDate(LocalDateTime lasUpdateDate) {
-        this.lasUpdateDate = lasUpdateDate;
+    public void setLastUpdateDate(LocalDateTime lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
     }
 
     public CourseStatus getCourseStatus() {
@@ -211,7 +211,7 @@ public class CourseModel implements Serializable {
     public String toString() {
         return "CourseModel [courseId=" + courseId + ", courseLevel=" + courseLevel + ", courseStatus=" + courseStatus
                 + ", creationDate=" + creationDate + ", description=" + description + ", imgUrl=" + imgUrl
-                + ", lasUpdateDate=" + lasUpdateDate + ", modules=" + modules + ", name=" + name + ", userInstructor="
+                + ", lastUpdateDate=" + lastUpdateDate + ", modules=" + modules + ", name=" + name + ", userInstructor="
                 + userInstructor + "]";
     }
     

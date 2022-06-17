@@ -1,10 +1,13 @@
 package com.ead.course.controllers;
 
-import java.net.URI;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Optional;
 import java.util.UUID;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ead.course.dtos.CourseDto;
 import com.ead.course.models.CourseModel;
@@ -56,13 +58,16 @@ public class CourseController {
         else{
             courseModelPage = courseService.findAll(spec, pageable);
         }        
-        return ResponseEntity.ok().body(courseModelPage);
+        return ResponseEntity.status(HttpStatus.OK).body(courseModelPage);
     }
 
     @GetMapping(value = "/{courseId}")
-    public ResponseEntity<CourseModel> findCourseById(@PathVariable UUID courseId) {
-        CourseModel obj = courseService.findById(courseId);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<Object> findCourseById(@PathVariable UUID courseId) {
+        Optional<CourseModel> courseModelOptional = courseService.findById(courseId);
+        if(!courseModelOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Course not found");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(courseModelOptional.get());
     }
 
     @PostMapping
@@ -72,33 +77,45 @@ public class CourseController {
         if (errors.hasErrors()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.getAllErrors());
         }
-        CourseModel obj = courseService.fromDto(courseDto);
-        obj = courseService.insert(obj);
-        obj = courseService.save(obj);
-        log.debug("POST saveCourse courseId saved {} ", obj.getCourseId());
-        log.info("Course saved successfully courseId {} ", obj.getCourseId());
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{courseId}").buildAndExpand(obj.getCourseId())
-                .toUri();
-        return ResponseEntity.created(uri).body(obj);
+        var courseModel = new CourseModel();
+        BeanUtils.copyProperties(courseDto, courseModel);
+        courseModel.setCreationDate(LocalDateTime.now(ZoneId.of("UTC")));
+        courseModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
+        courseService.save(courseModel);
+        log.debug("POST saveCourse courseId saved {} ", courseModel.getCourseId());
+        log.info("Course saved successfully courseId {} ", courseModel.getCourseId());
+        return ResponseEntity.status(HttpStatus.CREATED).body(courseModel);
     }
 
     @PutMapping(value = "/{courseId}")
-    public ResponseEntity<CourseModel> updateCourse(@PathVariable UUID courseId,
+    public ResponseEntity<Object> updateCourse(@PathVariable UUID courseId,
             @RequestBody @Valid CourseDto courseDto) {
         log.debug("PUT updateCourse courseDto received {} ", courseDto.toString());
-        CourseModel obj = courseService.fromDto(courseDto);
-        obj = courseService.updateCourse(courseId, obj);
-        obj = courseService.save(obj);
-        log.debug("PUT updateCourse courseId saved {} ", obj.getCourseId());
-        log.info("Course saved successfully courseId {} ", obj.getCourseId());
-        return ResponseEntity.ok().body(obj);
+        Optional<CourseModel> courseModelOptional = courseService.findById(courseId);
+        if(!courseModelOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Course not found.");
+        }
+        var courseModel = courseModelOptional.get();
+        courseModel.setName(courseDto.getName());
+        courseModel.setDescription(courseDto.getDescription());
+        courseModel.setImgUrl(courseDto.getImgUrl());
+        courseModel.setCourseStatus(courseDto.getCourseStatus());
+        courseModel.setCourseLevel(courseDto.getCourseLevel());
+        courseModel.setLastUpdateDate(LocalDateTime.now(ZoneId.of("UTC")));
+        courseService.save(courseModel);
+        log.debug("PUT updateCourse courseId saved {} ", courseModel.getCourseId());
+        log.info("Course saved successfully courseId {} ", courseModel.getCourseId());
+        return ResponseEntity.status(HttpStatus.OK).body(courseModel);
     }
 
     @DeleteMapping(value = "/{courseId}")
     public ResponseEntity<Object> deleteCourse(@PathVariable UUID courseId) {
         log.debug("DELETE deleteCourse courseId received {} ", courseId);
-        CourseModel obj = courseService.findById(courseId);
-        courseService.delete(obj);
+        Optional<CourseModel> courseModelOptional = courseService.findById(courseId);
+        if(!courseModelOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Course not found.");
+        }
+        courseService.delete(courseModelOptional.get());
         log.debug("DELETE deleteCourse courseId saved {} ", courseId);
         log.info("Course deleted successfully courseId {} ", courseId);
         return ResponseEntity.ok().body("Curso deletado com sucesso");

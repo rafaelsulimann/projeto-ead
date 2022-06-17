@@ -1,9 +1,7 @@
-package com.ead.authuser.validation.impl;
+package com.ead.authuser.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-
-import com.ead.authuser.validation.UsernameConstraint;
 
 public class UsernameConstraintImpl implements ConstraintValidator<UsernameConstraint, String> {
 
