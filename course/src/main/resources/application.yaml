@@ -26,6 +26,8 @@ spring:
   output:
     ansi:
       enabled: always
+  rabbitmq:
+    addresses: amqps://ypmdpmat:lQKhK8zSJiFsefQ8NNJ4agOiFoujqOUo@shark.rmq.cloudamqp.com/ypmdpmat
 
 logging:
   level:
