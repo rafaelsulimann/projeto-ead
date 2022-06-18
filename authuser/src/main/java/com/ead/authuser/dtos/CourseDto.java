@@ -3,8 +3,8 @@ package com.ead.authuser.dtos;
 import java.io.Serializable;
 import java.util.UUID;
 
-import com.ead.authuser.models.enums.CourseLevel;
-import com.ead.authuser.models.enums.CourseStatus;
+import com.ead.authuser.enums.CourseLevel;
+import com.ead.authuser.enums.CourseStatus;
 
 public class CourseDto implements Serializable {
 

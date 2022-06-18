@@ -23,8 +23,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.ead.course.models.enums.CourseLevel;
-import com.ead.course.models.enums.CourseStatus;
+import com.ead.course.enums.CourseLevel;
+import com.ead.course.enums.CourseStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

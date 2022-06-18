@@ -13,10 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.hateoas.RepresentationModel;
 
-import com.ead.authuser.models.enums.UserStatus;
-import com.ead.authuser.models.enums.UserType;
+import com.ead.authuser.dtos.UserEventDto;
+import com.ead.authuser.enums.UserStatus;
+import com.ead.authuser.enums.UserType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -176,6 +178,14 @@ public class UserModel extends RepresentationModel<UserModel> implements Seriali
 
     public void setLastUpdateTime(LocalDateTime lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public UserEventDto convertToUserEventDto(){
+        var userEventDto = new UserEventDto();
+        BeanUtils.copyProperties(this, userEventDto);
+        userEventDto.setUserStatus(userStatus.toString());
+        userEventDto.setUserType(userType.toString());
+        return userEventDto;
     }
 
     @Override

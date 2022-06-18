@@ -6,8 +6,8 @@ import java.util.UUID;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.ead.course.models.enums.CourseLevel;
-import com.ead.course.models.enums.CourseStatus;
+import com.ead.course.enums.CourseLevel;
+import com.ead.course.enums.CourseStatus;
 
 public class CourseDto implements Serializable{
 

@@ -1,4 +1,4 @@
-package com.ead.authuser.models.enums;
+package com.ead.course.enums;
 
 public enum UserStatus {
 

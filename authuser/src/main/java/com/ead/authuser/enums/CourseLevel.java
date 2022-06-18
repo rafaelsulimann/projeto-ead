@@ -1,4 +1,4 @@
-package com.ead.course.models.enums;
+package com.ead.authuser.enums;
 
 public enum CourseLevel {
     

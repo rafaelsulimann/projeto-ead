@@ -1,4 +1,4 @@
-package com.ead.course.models.enums;
+package com.ead.course.enums;
 
 public enum CourseStatus {
 
