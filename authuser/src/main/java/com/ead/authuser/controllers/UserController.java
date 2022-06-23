@@ -69,11 +69,11 @@ public class UserController {
     public ResponseEntity<Object> deleteUser(@PathVariable UUID userId) {
         log.debug("DELETE deleteUser userId received {} ", userId);
         Optional<UserModel> userModelOptional = userService.findById(userId);
-        if(userModelOptional.isPresent()){
+        if(!userModelOptional.isPresent()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
         else{
-            userService.delete(userModelOptional.get());
+            userService.deleteUser(userModelOptional.get());
             log.debug("DELETE deleteUser userId saved {} ", userId);
             log.info("User deleted successfully userId {} ", userId);
             return ResponseEntity.status(HttpStatus.OK).body("User deleted successfully");
@@ -85,16 +85,15 @@ public class UserController {
             @RequestBody @Validated(UserDto.UserView.UserPut.class) @JsonView(UserDto.UserView.UserPut.class) UserDto userDto) {
         log.debug("PUT updateUser userDto received {} ", userDto.toString());
         Optional<UserModel> userModelOptional = userService.findById(userId);
-        if(userModelOptional.isPresent()) {
+        if(!userModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
         else{
             var userModel = userModelOptional.get();
             userModel.setFullName(userDto.getFullName());
             userModel.setPhoneNumber(userDto.getPhoneNumber());
-            userModel.setCpf(userDto.getCpf());
             userModel.setLastUpdateTime(LocalDateTime.now(ZoneId.of("UTC")));
-            userService.save(userModel);
+            userService.updateUser(userModel);
             log.debug("PUT updateUser userId saved {} ", userModel.getUserId());
             log.info("User saved successfully userId {} ", userModel.getUserId());
             return ResponseEntity.status(HttpStatus.OK).body(userModel);
@@ -106,7 +105,7 @@ public class UserController {
             @RequestBody @Validated(UserDto.UserView.PasswordPut.class) @JsonView(UserDto.UserView.PasswordPut.class) UserDto userDto) {
         log.debug("PUT updateUserPassword userDto received {} ", userDto.toString());
         Optional<UserModel> userModelOptional = userService.findById(userId);
-        if(userModelOptional.isPresent()) {
+        if(!userModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         } if(!userModelOptional.get().getPassword().equals(userDto.getOldPassword())){
             log.warn("Mismatched old password userId {} ", userId);
@@ -115,7 +114,7 @@ public class UserController {
             var userModel = userModelOptional.get();
             userModel.setPassword(userDto.getPassword());
             userModel.setLastUpdateTime(LocalDateTime.now(ZoneId.of("UTC")));
-            userService.save(userModel);
+            userService.updatePassword(userModel);
             log.debug("PUT updateUserPassword userId saved {} ", userModel.getUserId());
             log.info("User saved successfully userId {} ", userModel.getUserId());
             return ResponseEntity.status(HttpStatus.OK).body("Password updated successfully.");
@@ -127,14 +126,14 @@ public class UserController {
             @RequestBody @Validated(UserDto.UserView.ImagePut.class) @JsonView(UserDto.UserView.ImagePut.class) UserDto userDto) {
         log.debug("PUT updateUserImage userDto received {} ", userDto.toString());
         Optional<UserModel> userModelOptional = userService.findById(userId);
-        if(userModelOptional.isPresent()) {
+        if(!userModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
         else{
             var userModel = userModelOptional.get();
             userModel.setImgUrl(userDto.getImgUrl());
             userModel.setLastUpdateTime(LocalDateTime.now(ZoneId.of("UTC")));
-            userService.save(userModel);
+            userService.updateUser(userModel);
             log.debug("PUT updateUserImage userId saved {} ", userModel.getUserId());
             log.info("User saved successfully userId {} ", userModel.getUserId());
             return ResponseEntity.status(HttpStatus.OK).body(userModel);

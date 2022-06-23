@@ -41,7 +41,7 @@ public class InstructorController {
             var userModel = userModelOptional.get();
             userModel.setUserType(UserType.INSTRUCTOR);
             userModel.setLastUpdateTime(LocalDateTime.now(ZoneId.of("UTC")));
-            userService.save(userModel);
+            userService.updateUser(userModel);
             log.debug("POST saveSubscriptionInstructor userId saved {} ", userModel.getUserId());
             log.info("User saved successfully userId {} ", userModel.getUserId());
             return ResponseEntity.ok().body(userModel);            

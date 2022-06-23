@@ -33,7 +33,7 @@ public class UserCourseController {
                                     @PathVariable UUID userId,
                                     @PageableDefault(page = 0, size = 10, sort = "courseId", direction = Sort.Direction.ASC) Pageable pageable) {
         Optional<UserModel> userModelOptional = userService.findById(userId);
-        if(userModelOptional.isPresent()){
+        if(!userModelOptional.isPresent()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
         else{
