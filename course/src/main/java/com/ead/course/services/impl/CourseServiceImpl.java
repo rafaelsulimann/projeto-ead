@@ -68,5 +68,16 @@ public class CourseServiceImpl implements CourseService{
         courseRepository.delete(courseModel);
     }
 
+    @Override
+    public boolean existsByCourseAndUser(UUID courseId, UUID userId) {
+        return courseRepository.existsByCourseAndUser(courseId, userId);
+    }
+
+    @Transactional
+    @Override
+    public void saveSubscriptionUserInCourse(UUID courseId, UUID userId) {
+        courseRepository.saveCourseUser(courseId, userId);
+    }
+
       
 }

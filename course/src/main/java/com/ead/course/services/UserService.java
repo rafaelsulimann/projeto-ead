@@ -1,5 +1,6 @@
 package com.ead.course.services;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
@@ -11,6 +12,7 @@ import com.ead.course.models.UserModel;
 public interface UserService {
 
     Page<UserModel> findAll(Specification<UserModel> spec, Pageable pageable);
+    Optional<UserModel> findById(UUID userId);
     UserModel save(UserModel userModel);
     void delete(UUID userId);
     
