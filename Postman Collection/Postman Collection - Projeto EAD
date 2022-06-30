@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userName\": \"gilbertoSulimann\",\r\n    \"email\": \"gilbertoSulimann@gmail.com\",\r\n    \"password\": \"65435286974\",\r\n    \"fullName\": \"Gilberto Sulimann\",\r\n    \"phoneNumber\": \"51968352614\",\r\n    \"cpf\": \"00000000001\"\r\n}",
+							"raw": "{\r\n    \"userName\": \"tales\",\r\n    \"email\": \"tales@gmail.com\",\r\n    \"password\": \"talesEloi\",\r\n    \"fullName\": \"tales Eloi\",\r\n    \"phoneNumber\": \"51958585858\",\r\n    \"cpf\": \"00000000007\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -52,7 +52,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ead-authuser/users/aa7df8d4-8a31-43ae-ae01-2e6c27085642/courses",
+									"raw": "http://localhost:8080/ead-authuser/users/55c0b3e7-33bc-4d48-913e-d61a4689b6be/courses",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -61,7 +61,7 @@
 									"path": [
 										"ead-authuser",
 										"users",
-										"aa7df8d4-8a31-43ae-ae01-2e6c27085642",
+										"55c0b3e7-33bc-4d48-913e-d61a4689b6be",
 										"courses"
 									],
 									"query": [
@@ -118,7 +118,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"userId\":\"a5b44ee1-c285-492b-a541-fb4f24315c87\"\r\n}",
+									"raw": "{\r\n    \"userId\":\"4693d303-b725-4368-9579-fd980af3c717\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -226,7 +226,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/ead-authuser/users/53b0cf8e-865b-4744-a2f2-528021c42223",
+							"raw": "localhost:8080/ead-authuser/users/55c0b3e7-33bc-4d48-913e-d61a4689b6be",
 							"host": [
 								"localhost"
 							],
@@ -234,7 +234,7 @@
 							"path": [
 								"ead-authuser",
 								"users",
-								"53b0cf8e-865b-4744-a2f2-528021c42223"
+								"55c0b3e7-33bc-4d48-913e-d61a4689b6be"
 							]
 						}
 					},
@@ -246,7 +246,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/ead-authuser/users/a5b44ee1-c285-492b-a541-fb4f24315c87",
+							"raw": "localhost:8080/ead-authuser/users/b0fb9a6d-480e-4e7d-ad89-ddb0cdc561a5",
 							"host": [
 								"localhost"
 							],
@@ -254,7 +254,7 @@
 							"path": [
 								"ead-authuser",
 								"users",
-								"a5b44ee1-c285-492b-a541-fb4f24315c87"
+								"b0fb9a6d-480e-4e7d-ad89-ddb0cdc561a5"
 							]
 						}
 					},
@@ -267,7 +267,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"fullName\": \"Rafael Sulimann\",\r\n    \"phoneNumber\": \"51981658626\"\r\n}",
+							"raw": "{\r\n    \"fullName\": \"Noemi Xavier\",\r\n    \"phoneNumber\": \"51981658626\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -275,7 +275,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/ead-authuser/users/53b0cf8e-865b-4744-a2f2-528021c42223",
+							"raw": "localhost:8080/ead-authuser/users/d79f8648-1b1f-426d-86ee-bc99e3b6da56",
 							"host": [
 								"localhost"
 							],
@@ -283,7 +283,7 @@
 							"path": [
 								"ead-authuser",
 								"users",
-								"53b0cf8e-865b-4744-a2f2-528021c42223"
+								"d79f8648-1b1f-426d-86ee-bc99e3b6da56"
 							]
 						}
 					},
@@ -334,7 +334,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/ead-authuser/users/e87cf3d7-2f30-4773-91f5-eef231ee2a8d/image",
+							"raw": "localhost:8080/ead-authuser/users/d79f8648-1b1f-426d-86ee-bc99e3b6da56/image",
 							"host": [
 								"localhost"
 							],
@@ -342,7 +342,7 @@
 							"path": [
 								"ead-authuser",
 								"users",
-								"e87cf3d7-2f30-4773-91f5-eef231ee2a8d",
+								"d79f8648-1b1f-426d-86ee-bc99e3b6da56",
 								"image"
 							]
 						}
@@ -363,7 +363,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:8080/ead-course/courses/f744ea26-52d8-439f-9b2d-193d204c8ee2/users",
+									"raw": "localhost:8080/ead-course/courses/f757e336-b6e7-401d-87f4-23a7f4d6b9d7/users",
 									"host": [
 										"localhost"
 									],
@@ -371,7 +371,7 @@
 									"path": [
 										"ead-course",
 										"courses",
-										"f744ea26-52d8-439f-9b2d-193d204c8ee2",
+										"f757e336-b6e7-401d-87f4-23a7f4d6b9d7",
 										"users"
 									]
 								}
@@ -385,7 +385,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"userId\": \"aa7df8d4-8a31-43ae-ae01-2e6c27085642\"\r\n}",
+									"raw": "{\r\n    \"userId\": \"b0fb9a6d-480e-4e7d-ad89-ddb0cdc561a5\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -393,7 +393,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:8080/ead-course/courses/f744ea26-52d8-439f-9b2d-193d204c8ee2/users/subscription",
+									"raw": "localhost:8080/ead-course/courses/f757e336-b6e7-401d-87f4-23a7f4d6b9d7/users/subscription",
 									"host": [
 										"localhost"
 									],
@@ -401,7 +401,7 @@
 									"path": [
 										"ead-course",
 										"courses",
-										"f744ea26-52d8-439f-9b2d-193d204c8ee2",
+										"f757e336-b6e7-401d-87f4-23a7f4d6b9d7",
 										"users",
 										"subscription"
 									]
@@ -494,7 +494,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"User Instructor\",\r\n    \"description\": \"Aprenda Spring 10 e 11 para aplicações\",\r\n    \"userInstructor\": \"a5b44ee1-c285-492b-a541-fb4f24315c87\",\r\n    \"courseStatus\": \"CONCLUDED\",\r\n    \"courseLevel\": \"BEGINNER\"\r\n}",
+							"raw": "{\r\n    \"name\": \"SERÁ QUE VAI DAR\",\r\n    \"description\": \"VAMOS VER\",\r\n    \"userInstructor\": \"4693d303-b725-4368-9579-fd980af3c717\",\r\n    \"courseStatus\": \"CONCLUDED\",\r\n    \"courseLevel\": \"BEGINNER\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -521,7 +521,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/ead-course/courses/f744ea26-52d8-439f-9b2d-193d204c8ee2",
+							"raw": "localhost:8080/ead-course/courses/aae0595c-ff93-42c2-8741-e1652c5a4e74",
 							"host": [
 								"localhost"
 							],
@@ -529,7 +529,7 @@
 							"path": [
 								"ead-course",
 								"courses",
-								"f744ea26-52d8-439f-9b2d-193d204c8ee2"
+								"aae0595c-ff93-42c2-8741-e1652c5a4e74"
 							]
 						}
 					},
