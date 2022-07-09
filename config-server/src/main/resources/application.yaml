@@ -11,7 +11,7 @@ spring:
           uri: https://github.com/rafaelsulimann/ead-config-server-repo
           default-label: main
           username: rafaelsulimann
-          password: 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
+          password: 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
 
 eureka:
   client:
