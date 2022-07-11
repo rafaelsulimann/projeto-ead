@@ -871,6 +871,127 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "CONFIG-SERVER",
+			"item": [
+				{
+					"name": "APPLICATION - GLOBAL CONFIGS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8888/application/main",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"application",
+								"main"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AUTH USER - CONFIGS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8888/ead-authuser-service/main",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"ead-authuser-service",
+								"main"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AUTH USER - TESTE REFRESH SCOPE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8087/ead-authuser/refreshscope",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"ead-authuser",
+								"refreshscope"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AUTH USER - REFRESH ACTUATOR",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8087/ead-authuser/actuator/refresh",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"ead-authuser",
+								"actuator",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AUTH USER - HEALTH",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8087/ead-authuser/actuator/health",
+							"host": [
+								"localhost"
+							],
+							"port": "8087",
+							"path": [
+								"ead-authuser",
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "COURSE - CONFIGS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8888/ead-course-service/main",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"ead-course-service",
+								"main"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
