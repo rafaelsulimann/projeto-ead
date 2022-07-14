@@ -52,7 +52,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ead-authuser/users/55c0b3e7-33bc-4d48-913e-d61a4689b6be/courses",
+									"raw": "http://localhost:8080/ead-authuser/users/4693d303-b725-4368-9579-fd980af3c717/courses",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -61,7 +61,7 @@
 									"path": [
 										"ead-authuser",
 										"users",
-										"55c0b3e7-33bc-4d48-913e-d61a4689b6be",
+										"4693d303-b725-4368-9579-fd980af3c717",
 										"courses"
 									],
 									"query": [
@@ -385,7 +385,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"userId\": \"b0fb9a6d-480e-4e7d-ad89-ddb0cdc561a5\"\r\n}",
+									"raw": "{\r\n    \"userId\": \"4693d303-b725-4368-9579-fd980af3c717\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -986,6 +986,63 @@
 							"path": [
 								"ead-course-service",
 								"main"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "NOTIFICATION",
+			"item": [
+				{
+					"name": "NOTIFICATION - GET ALL BY USER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/ead-notification/users/4693d303-b725-4368-9579-fd980af3c717/notifications",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ead-notification",
+								"users",
+								"4693d303-b725-4368-9579-fd980af3c717",
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NOTIFICATION - UPDATE STATUS",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"notificationStatus\": \"READ\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/ead-notification/users/4693d303-b725-4368-9579-fd980af3c717/notifications/bb279822-aa11-417b-9ec4-76873551c540",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ead-notification",
+								"users",
+								"4693d303-b725-4368-9579-fd980af3c717",
+								"notifications",
+								"bb279822-aa11-417b-9ec4-76873551c540"
 							]
 						}
 					},
