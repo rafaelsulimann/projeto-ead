@@ -22,7 +22,12 @@ spring:
 
 eureka:
   client:
-    serviceUrl:
-      defaultZone: 'http://localhost:8761/eureka'
+    service-url:
+      defaultZone: 'http://${ead.serviceRegistry.username}:${ead.serviceRegistry.password}@localhost:8761/eureka'
   instance:
     hostname: localhost
+  
+ead:
+  serviceRegistry:
+    username: serviceregistry
+    password: 'ead123sr'
