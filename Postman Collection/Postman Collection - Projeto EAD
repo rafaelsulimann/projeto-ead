@@ -878,6 +878,21 @@
 				{
 					"name": "APPLICATION - GLOBAL CONFIGS",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "ead123cs",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "configserver",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -897,6 +912,21 @@
 				{
 					"name": "AUTH USER - CONFIGS",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "ead123cs",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "configserver",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -975,6 +1005,21 @@
 				{
 					"name": "COURSE - CONFIGS",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "ead123cs",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "configserver",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -985,6 +1030,40 @@
 							"port": "8888",
 							"path": [
 								"ead-course-service",
+								"main"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "NOTIFICATION - CONFIGS",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "ead123cs",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "configserver",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8888/ead-notificaiton-service/main",
+							"host": [
+								"localhost"
+							],
+							"port": "8888",
+							"path": [
+								"ead-notificaiton-service",
 								"main"
 							]
 						}
